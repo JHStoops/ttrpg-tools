@@ -1,0 +1,34 @@
+{
+  "name": "ttrpg-tools",
+  "version": "1.0.0",
+  "description": "API for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JHStoops/ttrpg-tools.git"
+  },
+  "keywords": [
+    "ttrpg",
+    "rpg",
+    "dice",
+    "die",
+    "roll",
+    "npc",
+    "towns",
+    "generator"
+  ],
+  "author": "Joseph H. Stoops",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JHStoops/ttrpg-tools/issues"
+  },
+  "homepage": "https://github.com/JHStoops/ttrpg-tools#readme",
+  "devDependencies": {
+    "eslint": "^8.17.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0"
+  }
+}
