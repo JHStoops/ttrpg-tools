@@ -54,7 +54,7 @@ function coin(coinFlips = 1, asNumeric = false) {
 function d4(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d4(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d4(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 4: dieCount }, verbose)
+  return diceRoll({ 4: dieCount }, verbose)
 }
 
 /**
@@ -66,7 +66,7 @@ function d4(dieCount = 1, verbose = false) {
 function d6(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d6(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d6(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 6: dieCount }, verbose)
+  return diceRoll({ 6: dieCount }, verbose)
 }
 
 /**
@@ -78,7 +78,7 @@ function d6(dieCount = 1, verbose = false) {
 function d8(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d8(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d8(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 8: dieCount }, verbose)
+  return diceRoll({ 8: dieCount }, verbose)
 }
 
 /**
@@ -90,7 +90,7 @@ function d8(dieCount = 1, verbose = false) {
 function d10(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d10(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d10(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 10: dieCount }, verbose)
+  return diceRoll({ 10: dieCount }, verbose)
 }
 
 /**
@@ -102,7 +102,7 @@ function d10(dieCount = 1, verbose = false) {
 function d12(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d12(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d12(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 12: dieCount }, verbose)
+  return diceRoll({ 12: dieCount }, verbose)
 }
 
 /**
@@ -114,7 +114,7 @@ function d12(dieCount = 1, verbose = false) {
 function d20(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d20(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d20(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 20: dieCount }, verbose)
+  return diceRoll({ 20: dieCount }, verbose)
 }
 
 /**
@@ -126,7 +126,7 @@ function d20(dieCount = 1, verbose = false) {
 function d100(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d100(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d100(): dieCount must be greater or equal to 1.')
-  return this.diceRoll({ 100: dieCount }, verbose)
+  return diceRoll({ 100: dieCount }, verbose)
 }
 
 module.exports = {
