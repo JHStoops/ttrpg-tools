@@ -1,8 +1,8 @@
-const { getRandomElement } = require('./helpers/utils')
+const { getRandomElement } = require('utils')
+const { givenNames, familyNames } = require('data/names')
+const classes = require('data/classes')
+const races = require('data/races')
 const { generateTown } = require('./towns')
-const { givenNames, familyNames } = require('./data/names')
-const classes = require('./data/classes')
-const races = require('./data/races')
 
 function generateNpc(sex = Math.random() > 0.5 ? 'female' : 'male') {
   if (![ undefined, 'female', 'male' ].includes(sex)) throw Error('generateNpc(): sex paramter must be either "female", "male", or undefined.')

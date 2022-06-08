@@ -15,8 +15,13 @@ module.exports = {
   plugins: ["jest"],
   settings: {
     "import/resolver": {
-      "alias": {
-        "extensions": [".js", ".json"]
+      alias: {
+        extensions: [".js", ".json"],
+        map: [
+          [ 'data', './data' ],
+          [ 'generators', './generators' ],
+          [ 'utils', './lib/utils.js' ]
+        ]
       }
     }
   },
@@ -30,24 +35,15 @@ module.exports = {
     "eqeqeq": "warn",
     "comma-spacing": ["error", { "before": false, "after": true }],
     "no-use-before-define": ["error", { "functions": false, "variables": true }],
-    "no-loop-func": "off",
-    "no-underscore-dangle": "off",
+    "no-param-reassign": "error",
     "array-bracket-spacing": ["error", "always"],
-    "class-methods-use-this": "off",
     "no-plusplus": "off",
     "no-lonely-if": "off",
-    "default-case": "off",
-    "jest/require-hook": "off",
-    "jest/prefer-called-with": "off",
-    "jest/require-top-level-describe": "off",
-    "new-cap": "off",
-    "no-param-reassign": "warn",
     "valid-jsdoc": "warn",
     "no-debugger": "warn",
-    "prefer-destructuring": "warn",
-    "comma-dangle": "error",
-    "no-dupe-args": "error",
-    "no-dupe-keys": "error",
+    "import/extensions": ["error", {
+      "js": "ignorePackages"
+    }],
 
     // Jest rules
     "jest/prefer-expect-assertions": "off",

@@ -1,5 +1,5 @@
-const { getRandomElement } = require('./helpers/utils')
-const { descriptors, prefixes, suffixes } = require('./data/towns')
+const { getRandomElement } = require('utils')
+const { descriptors, prefixes, suffixes } = require('data/towns')
 
 function generateTown() {
   let townName = ''

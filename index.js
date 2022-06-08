@@ -1,6 +1,6 @@
-const dice = require('./dice')
-const npc = require('./npc')
-const towns = require('./towns')
+const dice = require('./generators/dice')
+const npc = require('./generators/npc')
+const towns = require('./generators/towns')
 
 module.exports = {
   ...dice,
