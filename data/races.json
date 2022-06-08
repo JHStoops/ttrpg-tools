@@ -1,54 +1,761 @@
-[
-  "Aarakocra",
-  "Aasimar",
-  "Air Genasi",
-  "Bugbear",
-  "Centaur",
-  "Changeling",
-  "Deep Gnome",
-  "Dragonborn",
-  "Duergar",
-  "Dwarf",
-  "Earth Genasi",
-  "Eladrin",
-  "Elf",
-  "Fairy",
-  "Firbolg",
-  "Fire Genasi",
-  "Githyanki",
-  "Githzerai",
-  "Gnome",
-  "Goblin",
-  "Goliath",
-  "Grung",
-  "Half-Elf",
-  "Halfling",
-  "Half-Orc",
-  "Harengon",
-  "Hobgoblin",
-  "Human",
-  "Kalashtar",
-  "Kenku",
-  "Kobold",
-  "Leonin",
-  "Lizardfolk",
-  "Locathah",
-  "Loxodon",
-  "Minotaur",
-  "Orc",
-  "Owlin",
-  "Satyr",
-  "Sea Elf",
-  "Shadar-kai",
-  "Shifter",
-  "Simic Hybrid",
-  "Tabaxi",
-  "Tiefling",
-  "Tortle",
-  "Triton",
-  "Vedalken",
-  "Verdan",
-  "Warforged",
-  "Water Genasi",
-  "Yuan-ti"
-]
+{
+  "Aarakocra": {
+    "name": "Aarakocra",
+    "avgAgeOfDeath": 30,
+    "avgHeight": 5.0,
+    "avgWeight": 90.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 50,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Aarakocra",
+      "Auran",
+      "Common"
+    ]
+  },
+  "Aasimar": {
+    "name": "Aasimar",
+    "avgAgeOfDeath": 160,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Celestial",
+      "Common"
+    ]
+  },
+  "Air Genasi": {
+    "name": "Air Genasi",
+    "avgAgeOfDeath": 120,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Primordial"
+    ]
+  },
+  "Bugbear": {
+    "name": "Bugbear",
+    "avgAgeOfDeath": 80,
+    "avgHeight": 7.0,
+    "avgWeight": 300.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Goblin"
+    ]
+  },
+  "Centaur": {
+    "name": "Centaur",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 20,
+    "baseWalkSpeed": 40,
+    "languages": [
+      "Common",
+      "Sylvan"
+    ]
+  },
+  "Changeling": {
+    "name": "Changeling",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Deep Gnome": {
+    "name": "Deep Gnome",
+    "avgAgeOfDeath": 350,
+    "avgHeight": 3.5,
+    "avgWeight": 40.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Common",
+      "Gnomish"
+    ]
+  },
+  "Dragonborn": {
+    "name": "Dragonborn",
+    "avgAgeOfDeath": 80,
+    "avgHeight": 7.0,
+    "avgWeight": 250.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Draconic"
+    ]
+  },
+  "Duergar": {
+    "name": "Duergar",
+    "avgAgeOfDeath": 350,
+    "avgHeight": 4.5,
+    "avgWeight": 150.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ]
+  },
+  "Dwarf": {
+    "name": "Dwarf",
+    "avgAgeOfDeath": 350,
+    "avgHeight": 4.5,
+    "avgWeight": 150.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Common",
+      "Dwarvish"
+    ]
+  },
+  "Earth Genasi": {
+    "name": "Earth Genasi",
+    "avgAgeOfDeath": 120,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Primordial"
+    ]
+  },
+  "Eladrin": {
+    "name": "Eladrin",
+    "avgAgeOfDeath": 750,
+    "avgHeight": 6.0,
+    "avgWeight": 110.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ]
+  },
+  "Elf": {
+    "name": "Elf",
+    "avgAgeOfDeath": 750,
+    "avgHeight": 6.0,
+    "avgWeight": 110.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ]
+  },
+  "Fairy": {
+    "name": "Fairy",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 1.0,
+    "avgWeight": 10.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 30,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Firbolg": {
+    "name": "Firbolg",
+    "avgAgeOfDeath": 500,
+    "avgHeight": 7.5,
+    "avgWeight": 270.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Elvish",
+      "Giant"
+    ]
+  },
+  "Fire Genasi": {
+    "name": "Fire Genasi",
+    "avgAgeOfDeath": 120,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Primordial"
+    ]
+  },
+  "Githyanki": {
+    "name": "Githyanki",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.5,
+    "avgWeight": 100.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Gith"
+    ]
+  },
+  "Githzerai": {
+    "name": "Githzerai",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.5,
+    "avgWeight": 100.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Gith"
+    ]
+  },
+  "Gnome": {
+    "name": "Gnome",
+    "avgAgeOfDeath": 350,
+    "avgHeight": 3.5,
+    "avgWeight": 40.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Common",
+      "Gnomish"
+    ]
+  },
+  "Goblin": {
+    "name": "Goblin",
+    "avgAgeOfDeath": 60,
+    "avgHeight": 3.5,
+    "avgWeight": 60.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Goblin"
+    ]
+  },
+  "Goliath": {
+    "name": "Goliath",
+    "avgAgeOfDeath": 90,
+    "avgHeight": 7.5,
+    "avgWeight": 310.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Giant"
+    ]
+  },
+  "Grung": {
+    "name": "Grung",
+    "avgAgeOfDeath": 40,
+    "avgHeight": 3,
+    "avgWeight": 30.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Grung"
+    ]
+  },
+  "Half-Elf": {
+    "name": "Half-Elf",
+    "avgAgeOfDeath": 180,
+    "avgHeight": 5.5,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ]
+  },
+  "Halfling": {
+    "name": "Halfling",
+    "avgAgeOfDeath": 250,
+    "avgHeight": 3,
+    "avgWeight": 40.0,
+    "size": "small",
+    "baseClimbSpeed": 12,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 12,
+    "baseWalkSpeed": 25,
+    "languages": [
+      "Common",
+      "Halfling"
+    ]
+  },
+  "Half-Orc": {
+    "name": "Half-Orc",
+    "avgAgeOfDeath": 70,
+    "avgHeight": 6.0,
+    "avgWeight": 220.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Orc"
+    ]
+  },
+  "Harengon": {
+    "name": "Harengon",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 4.0,
+    "avgWeight": 120.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Hobgoblin": {
+    "name": "Hobgoblin",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 5.5,
+    "avgWeight": 175.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Goblin"
+    ]
+  },
+  "Human": {
+    "name": "Human",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Kalashtar": {
+    "name": "Kalashtar",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 5.8,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Quori"
+    ]
+  },
+  "Kenku": {
+    "name": "Kenku",
+    "avgAgeOfDeath": 60,
+    "avgHeight": 5.0,
+    "avgWeight": 105.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Auran"
+    ]
+  },
+  "Kobold": {
+    "name": "Kobold",
+    "avgAgeOfDeath": 110,
+    "avgHeight": 2.5,
+    "avgWeight": 30.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Draconic"
+    ]
+  },
+  "Leonin": {
+    "name": "Leonin",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.5,
+    "avgWeight": 200.0,
+    "size": "medium",
+    "baseClimbSpeed": 17,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 17,
+    "baseWalkSpeed": 35,
+    "languages": [
+      "Common",
+      "Leonin"
+    ]
+  },
+  "Lizardfolk": {
+    "name": "Lizardfolk",
+    "avgAgeOfDeath": 50,
+    "avgHeight": 6.5,
+    "avgWeight": 200.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 30,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Draconic"
+    ]
+  },
+  "Locathah": {
+    "name": "Locathah",
+    "avgAgeOfDeath": 75,
+    "avgHeight": 5.5,
+    "avgWeight": 150.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 30,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Aquan",
+      "Common"
+    ]
+  },
+  "Loxodon": {
+    "name": "Loxodon",
+    "avgAgeOfDeath": 450,
+    "avgHeight": 7.5,
+    "avgWeight": 350.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Loxodon"
+    ]
+  },
+  "Minotaur": {
+    "name": "Minotaur",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.5,
+    "avgWeight": 220.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Minotaur"
+    ]
+  },
+  "Orc": {
+    "name": "Orc",
+    "avgAgeOfDeath": 50,
+    "avgHeight": 6.5,
+    "avgWeight": 255.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Orc"
+    ]
+  },
+  "Owlin": {
+    "name": "Owlin",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 3.0,
+    "avgWeight": 40.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 30,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Satyr": {
+    "name": "Satyr",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 120.0,
+    "size": "medium",
+    "baseClimbSpeed": 17,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 17,
+    "baseWalkSpeed": 35,
+    "languages": [
+      "Common",
+      "Sylvan"
+    ]
+  },
+  "Sea Elf": {
+    "name": "Sea Elf",
+    "avgAgeOfDeath": 750,
+    "avgHeight": 6.0,
+    "avgWeight": 110.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 30,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Aquan"
+    ]
+  },
+  "Shadar-kai": {
+    "name": "Shadar-kai",
+    "avgAgeOfDeath": 750,
+    "avgHeight": 6.0,
+    "avgWeight": 110.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Elvish"
+    ]
+  },
+  "Shifter": {
+    "name": "Shifter",
+    "avgAgeOfDeath": 70,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Quori"
+    ]
+  },
+  "Tabaxi": {
+    "name": "Tabaxi",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.5,
+    "avgWeight": 160.0,
+    "size": "medium",
+    "baseClimbSpeed": 20,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Tiefling": {
+    "name": "Tiefling",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Infernal"
+    ]
+  },
+  "Tortle": {
+    "name": "Tortle",
+    "avgAgeOfDeath": 50,
+    "avgHeight": 5.5,
+    "avgWeight": 450.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Aquan"
+    ]
+  },
+  "Triton": {
+    "name": "Triton",
+    "avgAgeOfDeath": 200,
+    "avgHeight": 5.0,
+    "avgWeight": 150.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 30,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Primordial"
+    ]
+  },
+  "Vedalken": {
+    "name": "Vedalken",
+    "avgAgeOfDeath": 350,
+    "avgHeight": 6.5,
+    "avgWeight": 200.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Vedalken"
+    ]
+  },
+  "Verdan": {
+    "name": "Verdan",
+    "avgAgeOfDeath": 200,
+    "avgHeight": 4.0,
+    "avgWeight": 100.0,
+    "size": "small",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Goblin"
+    ]
+  },
+  "Warforged": {
+    "name": "Warforged",
+    "avgAgeOfDeath": 30,
+    "avgHeight": 6.0,
+    "avgWeight": 300.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  },
+  "Water Genasi": {
+    "name": "Water Genasi",
+    "avgAgeOfDeath": 120,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 30,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common",
+      "Primordial"
+    ]
+  },
+  "Yuan-ti": {
+    "name": "Yuan-ti",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Abyssal",
+      "Common",
+      "Draconic"
+    ]
+  }
+}
