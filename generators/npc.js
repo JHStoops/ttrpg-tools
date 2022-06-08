@@ -18,24 +18,25 @@ const { generateNpcName, generateTownName } = require('./names')
  * @returns {Object} - a randomized NPC
  */
 function generateNpc({
-  familyName, givenName, homeTown, languages, npcClass, occupation, race, randomizeClass, sex = Math.random() > 0.5 ? 'female' : 'male',
+  familyName, givenName, homeTown, languages, npcClass, occupation, race, randomizeClass, sex,
 } = {}) {
-  if (![ 'female', 'male' ].includes(sex)) throw Error('generateNpc(): sex paramter must be either "female", "male".')
+  if (![ undefined, 'female', 'male' ].includes(sex)) throw Error('generateNpc(): sex paramter must be either "female", "male", or undefined.')
+  const npcSex = [ 'female', 'male' ].includes(sex) ? sex : getRandomElement([ 'female', 'male' ])
 
   const npcRace = race && Object.keys(races).includes(race) ? races[race] : races[getRandomElement(Object.keys(races))]
 
-  let npcClassFinal = npcClass
+  let npcClassFinal = npcClass ?? ''
   if (randomizeClass || (!npcClass && Math.random() > 0.9)) npcClassFinal = getRandomElement(classes) // Unless a class is specified, 90% of people are average Joe's with zero class
-  const name = givenName && familyName ? { givenName, familyName, fullName: `${givenName} ${familyName}` } : generateNpcName(sex)
+  const name = givenName && familyName ? { givenName, familyName, fullName: `${givenName} ${familyName}` } : generateNpcName(npcSex)
 
   return {
     class: npcClassFinal,
-    hometown: homeTown ?? generateTownName(),
+    homeTown: homeTown ?? generateTownName(),
     languages: languages ?? [ ...new Set([ 'Common', getRandomElement(dndLanguages) ]) ], // Speak Common and up to one other language
     ...name,
     occupation: occupation ?? getRandomElement(occupations),
     race: npcRace,
-    sex,
+    sex: npcSex,
   }
 }
 

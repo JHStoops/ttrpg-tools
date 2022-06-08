@@ -1,5 +1,6 @@
 const { generateNpc } = require('./npc')
 const { givenNames } = require('../data/names.json')
+const races = require('../data/races.json')
 
 describe('generateNpc', () => {
   it('should exist', () => {
@@ -12,24 +13,94 @@ describe('generateNpc', () => {
     expect(typeof npc.familyName).toBe('string')
     expect(typeof npc.fullName).toBe('string')
     expect(typeof npc.givenName).toBe('string')
-    expect(typeof npc.hometown).toBe('string')
-    expect(typeof npc.race).toBe('string')
+    expect(typeof npc.homeTown).toBe('string')
+    expect(npc.languages).toBeInstanceOf(Array)
+    expect(typeof npc.occupation).toBe('string')
+    expect(typeof npc.race).toBe('object')
     expect(typeof npc.sex).toBe('string')
   })
 
-  it('should use provided sex (male)', () => {
-    const npc = generateNpc('male')
-    expect(givenNames.male).toContain(npc.givenName)
-    expect(npc.sex).toBe('male')
+  describe('specified sex', () => {
+    it('should use provided sex (male)', () => {
+      const npc = generateNpc({ sex: 'male' })
+      expect(givenNames.male).toContain(npc.givenName)
+      expect(npc.sex).toBe('male')
+    })
+
+    it('should use provided sex (female)', () => {
+      const npc = generateNpc({ sex: 'female' })
+      expect(givenNames.female).toContain(npc.givenName)
+      expect(npc.sex).toBe('female')
+    })
+
+    it('should throw an error if sex is an invalid value', () => {
+      expect(() => generateNpc({ sex: 'Owlbear' })).toThrow(Error('generateNpc(): sex paramter must be either "female", "male", or undefined.'))
+    })
   })
 
-  it('should use provided sex (female)', () => {
-    const npc = generateNpc('female')
-    expect(givenNames.female).toContain(npc.givenName)
-    expect(npc.sex).toBe('female')
+  describe('specified name', () => {
+    it('should use provided name', () => {
+      const name = { givenName: 'C3PO', familyName: 'R2D2' }
+      const npc = generateNpc(name)
+      expect(npc.givenName).toBe(name.givenName)
+      expect(npc.familyName).toBe(name.familyName)
+      expect(npc.fullName).toBe(`${name.givenName} ${name.familyName}`)
+    })
+
+    it('should generate a randomized name if `givenName` is not provided', () => {
+      const name = { familyName: 'R2D2' }
+      const npc = generateNpc(name)
+      expect(npc.familyName).not.toBe(name.familyName)
+    })
+
+    it('should generate a randomized name if `familyName` is not provided', () => {
+      const name = { givenName: 'C3PO' }
+      const npc = generateNpc(name)
+      expect(npc.givenName).not.toBe(name.givenName)
+    })
   })
 
-  it('should throw an error if sex is an invalid value', () => {
-    expect(() => generateNpc('Owlbear')).toThrow(Error('generateNpc(): sex paramter must be either "female", "male", or undefined.'))
+  describe('specified race', () => {
+    it('should use provided race', () => {
+      const npc = generateNpc({ race: Object.keys(races)[0] })
+      expect(npc.race).toEqual(Object.values(races)[0])
+    })
+  })
+
+  describe('specified home town', () => {
+    it('should use provided home town', () => {
+      const homeTown = 'Tatooine'
+      const npc = generateNpc({ homeTown })
+      expect(npc.homeTown).toEqual(homeTown)
+    })
+  })
+
+  describe('specified languages', () => {
+    it('should use provided languages', () => {
+      const languages = [ 'Norwegian', 'Spanish', 'English' ]
+      const npc = generateNpc({ languages })
+      expect(npc.languages).toEqual(languages)
+    })
+  })
+
+  describe('specified class', () => {
+    it('should use provided class', () => {
+      const npcClass = 'Druid'
+      const npc = generateNpc({ npcClass })
+      expect(npc.class).toEqual(npcClass)
+    })
+
+    it('should randomly assign a class with `randomizeClass`', () => {
+      const npc = generateNpc({ randomizeClass: true })
+      expect(npc.class).toBeTruthy()
+    })
+  })
+
+  describe('specified occupation', () => {
+    it('should use provided race', () => {
+      const occupation = 'Adventurer'
+      const npc = generateNpc({ occupation })
+      expect(npc.occupation).toEqual(occupation)
+    })
   })
 })

@@ -3,6 +3,7 @@ const { givenNames, familyNames } = require('../data/names.json')
 const { descriptors, prefixes, suffixes } = require('../data/towns.json')
 
 function generateNpcName(sex) {
+  if (!sex) throw Error('generateNpcName(): sex is a required parameter.')
   const givenName = getRandomElement(givenNames[sex])
   const familyName = getRandomElement(familyNames)
   return { familyName, givenName, fullName: `${givenName} ${familyName}` }
