@@ -1,5 +1,5 @@
 const { generateNpc } = require('./npc')
-const { givenNames } = require('./data/names')
+const { givenNames } = require('../data/names.json')
 
 describe('generateNpc', () => {
   it('should exist', () => {

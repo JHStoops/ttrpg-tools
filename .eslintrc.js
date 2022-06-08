@@ -1,9 +1,9 @@
 module.exports = {
   env: {
-    browser: true,
     commonjs: true,
     es2021: true,
     'jest/globals': true,
+    node: true,
   },
   extends: [
     'airbnb-base',
@@ -16,12 +16,7 @@ module.exports = {
   settings: {
     "import/resolver": {
       alias: {
-        extensions: [".js", ".json"],
-        map: [
-          [ 'data', './data' ],
-          [ 'generators', './generators' ],
-          [ 'utils', './lib/utils.js' ]
-        ]
+        extensions: [".js", ".json"]
       }
     }
   },
@@ -41,9 +36,6 @@ module.exports = {
     "no-lonely-if": "off",
     "valid-jsdoc": "warn",
     "no-debugger": "warn",
-    "import/extensions": ["error", {
-      "js": "ignorePackages"
-    }],
 
     // Jest rules
     "jest/prefer-expect-assertions": "off",

@@ -1,4 +1,4 @@
-const { getRandomInteger } = require('utils')
+const { getRandomInteger } = require('../lib/utils')
 
 /**
  * @description Takes an object of dice types and counts to return the rolled results.
