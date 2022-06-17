@@ -3,7 +3,7 @@
   "version": "1.0.8",
   "description": "API for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.",
   "author": "Joseph H. Stoops",
-  "main": "dist/main.js",
+  "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
     "postbuild": "cp README.md dist/README.md && cp LICENSE dist/LICENSE && cp package.json dist/package.json && cp package-lock.json dist/package-lock.json",
