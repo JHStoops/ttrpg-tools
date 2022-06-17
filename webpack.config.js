@@ -5,6 +5,8 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
+    library: 'ttrpgTools',
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
@@ -15,7 +17,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: [ '@babel/preset-env' ],
-            plugins: [ '@babel/plugin-proposal-object-rest-spread' ],
           },
         },
       },
