@@ -1,15 +1,15 @@
 {
   "name": "ttrpg-tools",
-  "version": "1.0.5",
+  "version": "1.0.4",
   "description": "API for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.",
   "author": "Joseph H. Stoops",
   "main": "dist/main.js",
   "scripts": {
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production",
+    "build": "webpack --mode=production",
+    "postbuild": "cp README.md dist/README.md && cp LICENSE dist/LICENSE && cp package.json dist/package.json && cp package-lock.json dist/package-lock.json",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
-    "publish:patch": "npm version patch && git push && git push --tags && npm publish",
+    "publish:patch": "npm run build && npm version patch && git push && git push --tags && npm publish dist",
     "test": "jest --watch",
     "test:ci": "jest --coverage"
   },
