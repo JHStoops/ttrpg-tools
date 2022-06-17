@@ -1,15 +1,15 @@
-const { getRandomElement } = require('../lib/utils')
-const { givenNames, familyNames } = require('../data/names.json')
-const { descriptors, prefixes, suffixes } = require('../data/towns.json')
+import { getRandomElement } from '../lib/utils'
+import { givenNames, familyNames } from '../data/names.json'
+import { descriptors, prefixes, suffixes } from '../data/towns.json'
 
-function generateNpcName(sex) {
+export function generateNpcName(sex) {
   if (!sex) throw Error('generateNpcName(): sex is a required parameter.')
   const givenName = getRandomElement(givenNames[sex])
   const familyName = getRandomElement(familyNames)
   return { familyName, givenName, fullName: `${givenName} ${familyName}` }
 }
 
-function generateTownName() {
+export function generateTownName() {
   let townName = ''
 
   // Add a descriptor to the town name 20% of the time
@@ -20,5 +20,3 @@ function generateTownName() {
 
   return townName
 }
-
-module.exports = { generateNpcName, generateTownName }

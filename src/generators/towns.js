@@ -1,7 +1,7 @@
-const { getRandomElement, getRandomInteger } = require('../lib/utils')
-const dndRaces = require('../data/races.json')
-const { generateTownName } = require('./names')
-const { generateNpc } = require('./npc')
+import { getRandomElement, getRandomInteger } from '../lib/utils'
+import dndRaces from '../data/races.json'
+import { generateTownName } from './names'
+import { generateNpc } from './npc'
 
 const townSizes = {
   xs: { min: 5, max: 20 },
@@ -19,7 +19,7 @@ const townSizes = {
  * @param {String|Number} size - The size of the town. Possible values: a specific number OR 'xs', 'sm', 'md', 'lg', 'xl', 'New York' for randomized ranges.
  * @returns {Object} randomized town
  */
-function generateTown({ name, races, size } = {}) {
+export function generateTown({ name, races, size } = {}) {
   const townSize = size ?? getRandomElement(Object.keys(townSizes))
   const townSizeRange = Number.isInteger(townSize) ? townSize : townSizes[townSize]
 
@@ -44,5 +44,3 @@ function generateTown({ name, races, size } = {}) {
     size: Number.isInteger(size) ? size : getRandomInteger(townSizeRange.max, townSizeRange.min),
   }
 }
-
-module.exports = { generateTown }

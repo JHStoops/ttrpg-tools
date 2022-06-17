@@ -36,6 +36,7 @@ module.exports = {
     "no-lonely-if": "off",
     "valid-jsdoc": "warn",
     "no-debugger": "warn",
+    "import/prefer-default-export": "off",
 
     // Jest rules
     "jest/prefer-expect-assertions": "off",

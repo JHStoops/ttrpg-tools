@@ -1,4 +1,4 @@
-const { getRandomInteger } = require('../lib/utils')
+import { getRandomInteger } from '../lib/utils'
 
 /**
  * @description Takes an object of dice types and counts to return the rolled results.
@@ -6,7 +6,7 @@ const { getRandomInteger } = require('../lib/utils')
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function diceRoll(dice, verbose) {
+export function diceRoll(dice, verbose) {
   if (typeof dice !== 'object') throw Error('diceRoll(): dice parameter must be an Object.')
   const dieRolls = {}
 
@@ -31,7 +31,7 @@ function diceRoll(dice, verbose) {
  * @param {Boolean} asNumeric - Whether to return numbers (0 and 1) instead of "Heads" and "Tails"
  * @returns {Object} - object with counts per side of the coin and their totals. If `asNumeric`, changes "heads" and "tails" object keys with `1` and `0` respectively.
  */
-function coin(coinFlips = 1, asNumeric = false) {
+export function coin(coinFlips = 1, asNumeric = false) {
   if (typeof coinFlips !== 'number') throw Error('coin(): coinFlips must be a Number.')
   if (coinFlips < 1) throw Error('coin(): coinFlips must be greater or equal to 1.')
 
@@ -47,7 +47,7 @@ function coin(coinFlips = 1, asNumeric = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d4(dieCount = 1, verbose = false) {
+export function d4(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d4(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d4(): dieCount must be greater or equal to 1.')
   return diceRoll({ 4: dieCount }, verbose)
@@ -59,7 +59,7 @@ function d4(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d6(dieCount = 1, verbose = false) {
+export function d6(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d6(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d6(): dieCount must be greater or equal to 1.')
   return diceRoll({ 6: dieCount }, verbose)
@@ -71,7 +71,7 @@ function d6(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d8(dieCount = 1, verbose = false) {
+export function d8(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d8(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d8(): dieCount must be greater or equal to 1.')
   return diceRoll({ 8: dieCount }, verbose)
@@ -83,7 +83,7 @@ function d8(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d10(dieCount = 1, verbose = false) {
+export function d10(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d10(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d10(): dieCount must be greater or equal to 1.')
   return diceRoll({ 10: dieCount }, verbose)
@@ -95,7 +95,7 @@ function d10(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d12(dieCount = 1, verbose = false) {
+export function d12(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d12(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d12(): dieCount must be greater or equal to 1.')
   return diceRoll({ 12: dieCount }, verbose)
@@ -107,7 +107,7 @@ function d12(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d20(dieCount = 1, verbose = false) {
+export function d20(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d20(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d20(): dieCount must be greater or equal to 1.')
   return diceRoll({ 20: dieCount }, verbose)
@@ -119,12 +119,8 @@ function d20(dieCount = 1, verbose = false) {
  * @param {Boolean} verbose - Whether to return a detailed response. false only returns total; true returns results of each die with total.
  * @returns {Object} - object with counts per type of die and their totals. If verbose, also returns an array with individual roll results per die type.
  */
-function d100(dieCount = 1, verbose = false) {
+export function d100(dieCount = 1, verbose = false) {
   if (typeof dieCount !== 'number') throw Error('d100(): dieCount must be a Number.')
   if (dieCount < 1) throw Error('d100(): dieCount must be greater or equal to 1.')
   return diceRoll({ 100: dieCount }, verbose)
-}
-
-module.exports = {
-  coin, d4, d6, d8, d10, d12, d20, d100, diceRoll,
 }

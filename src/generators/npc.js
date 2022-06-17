@@ -1,9 +1,9 @@
-const { getRandomElement } = require('../lib/utils')
-const classes = require('../data/classes.json')
-const dndLanguages = require('../data/languages.json')
-const occupations = require('../data/occupations.json')
-const races = require('../data/races.json')
-const { generateNpcName, generateTownName } = require('./names')
+import { getRandomElement } from '../lib/utils'
+import classes from '../data/classes.json'
+import dndLanguages from '../data/languages.json'
+import occupations from '../data/occupations.json'
+import races from '../data/races.json'
+import { generateNpcName, generateTownName } from './names'
 
 /**
  * @param {String} familyName - Specify the character's family name.
@@ -17,7 +17,7 @@ const { generateNpcName, generateTownName } = require('./names')
  * @param {String} sex - Specify the sex of the character (male/female).
  * @returns {Object} - a randomized NPC
  */
-function generateNpc({
+export function generateNpc({
   familyName, givenName, homeTown, languages, npcClass, occupation, race, randomizeClass, sex,
 } = {}) {
   if (![ undefined, 'female', 'male' ].includes(sex)) throw Error('generateNpc(): sex paramter must be either "female", "male", or undefined.')
@@ -39,5 +39,3 @@ function generateNpc({
     sex: npcSex,
   }
 }
-
-module.exports = { generateNpc }
