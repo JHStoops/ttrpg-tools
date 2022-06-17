@@ -34,26 +34,27 @@ module.exports = {
     '/node_modules/',
     'jest.config.js',
     '.eslintrc.js',
+    'webpack.config.js',
   ],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',
 
   // A list of reporter names that Jest uses when writing coverage reports
-  // coverageReporters: [
-  //   "json",
-  //   "text",
-  //   "lcov",
-  //   "clover"
-  // ],
+  coverageReporters: [
+    'json',
+    'text',
+    'text-summary',
+    'lcov',
+  ],
 
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     global: {
-      branches: 70,
-      functions: 70,
-      lines: 70,
-      statements: 70,
+      branches: 90,
+      functions: 90,
+      lines: 90,
+      statements: 90,
     },
   },
 
