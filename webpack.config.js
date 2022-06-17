@@ -5,8 +5,12 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'ttrpgTools',
-    libraryTarget: 'commonjs2',
+    library: {
+      type: 'module',
+    },
+  },
+  experiments: {
+    outputModule: true,
   },
   module: {
     rules: [
