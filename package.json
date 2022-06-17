@@ -9,7 +9,7 @@
     "postbuild": "cp README.md dist/README.md && cp LICENSE dist/LICENSE && cp package.json dist/package.json && cp package-lock.json dist/package-lock.json",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
-    "publish:patch": "npm run build && npm version patch && git push && git push --tags && npm publish dist",
+    "publish:patch": "npm version patch && npm run build && git push && git push --tags && npm publish dist",
     "test": "jest --watch",
     "test:ci": "jest --coverage"
   },
