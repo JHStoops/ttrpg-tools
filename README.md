@@ -7,11 +7,13 @@ Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG cam
 ES Module
 
 ```js
-import {
+import ttrpgTools from 'ttrpg-tools' // default export
+
+const {
   coin, d4, d6, d8, d10, d12, d20, d100, diceRoll,
   generateNpcName, generateTownName, generateNpc,
   generateTown
-} from 'ttrpg-tools'
+} = ttrpgTools
 ```
 
 CommonJS
@@ -21,7 +23,7 @@ const {
   coin, d4, d6, d8, d10, d12, d20, d100, diceRoll,
   generateNpcName, generateTownName, generateNpc,
   generateTown
-} = require('ttrpg-tools')
+} = require('ttrpg-tools').default
 ```
 
 ## API
@@ -29,7 +31,9 @@ const {
 ### Dice Rolls
 
 ```js
-import { d4, d6, d8, d10, d12, d20, d100 } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { d4, d6, d8, d10, d12, d20, d100 } = ttrpgTools
 
 const d4Roll = d4() // Defaults to a single die
 const d6RollThreeDice = d6(3)
@@ -74,7 +78,9 @@ const d100Roll = d100()
 | verbose | Boolean | Whether to return an object with individual roll results and total. |
 
 ```js
-import { diceRoll } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { diceRoll } = ttrpgTools
 
 const rollManyDieTypes = diceroll({
   "4": 2,
@@ -125,7 +131,9 @@ const rollManyDieTypes = diceroll({
 | asNumeric | Boolean | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
 
 ```js
-import { coin } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { coin } = ttrpgTools
 
 const flippedCoin = coin() // Defaults to one coin flip
 const flippedCoins = coin(3)
@@ -153,7 +161,9 @@ const flippedCoinsNumericResults = coin(3, true) // Replace "heads" and "tails" 
 ### Name Generators
 
 ```js
-import { generateNpcName, generateTownName } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { generateNpcName, generateTownName } = ttrpgTools
 
 const npcName = generateNpcName('male')
 const townName = generateTownName()
@@ -180,7 +190,9 @@ None
 ### NPC Generator
 
 ```js
-import { generateNpc } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { generateNpc } = ttrpgTools
 
 const npc = generateNpc()
 const npcWithSpecifiedName = generateNpc({ givenName: 'Tina', familyName: 'Fey' })
@@ -243,7 +255,9 @@ The parameters are passed in as a single object, with the property names defined
 ### Town Generator
 
 ```js
-import { generateTown } from 'ttrpg-tools'
+import ttrpgTools from 'ttrpg-tools'
+
+const { generateTown } = ttrpgTools
 
 const town = generateTown()
 const townWithSpecifiedName = generateTown({ name: 'Feywild City' })
@@ -275,7 +289,7 @@ const townWithSpecifiedName = generateTown({ name: 'Feywild City' })
   ],
 
   // Languages spoken in the town
-  "languages": [ "Common", "Halfling" ]
+  "languages": [ "Common", "Halfling" ],
 
   // Is one of the prevalent races, speaks all town's languages.
   "leader": randomizedNpcObject
