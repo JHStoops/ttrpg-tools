@@ -2,6 +2,19 @@
 
 Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.
 
+1. [How To Import](#how-to-import)
+2. [API](#api)
+    - [Standard Dice](#standard-dice)
+    - [Custom Dice](#custom-dice)
+    - [Coin Flips](#coin-flips)
+    - [Name Generators](#name-generators)
+    - [NPC Generator](#npc-generator)
+    - [Town Generator](#town-generator)
+3. [Supported Races](#supported-races)
+4. [Supported Classes](#supported-classes)
+5. [Contribute](#contribute)
+6. [Contact Information](#contact-information)
+
 ## How to Import
 
 ES Module
@@ -28,7 +41,7 @@ const {
 
 ## API
 
-### Dice Rolls
+### Standard Dice
 
 ```js
 import ttrpgTools from 'ttrpg-tools'
@@ -76,6 +89,8 @@ const d100Roll = d100()
 | -------- | ---- | ----------- |
 | dieCount | Number | How many dice to roll. Default: 1 |
 | verbose | Boolean | Whether to return an object with individual roll results and total. |
+
+### Custom Dice
 
 ```js
 import ttrpgTools from 'ttrpg-tools'
@@ -129,6 +144,8 @@ const rollManyDieTypes = diceroll({
 | -------- | ---- | ----------- |
 | dice | Object | How many coins to flip. Default: 1 |
 | asNumeric | Boolean | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
+
+### Coin Flips
 
 ```js
 import ttrpgTools from 'ttrpg-tools'
