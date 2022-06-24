@@ -1,5 +1,12 @@
 # ttrpg-tools
 
+[![Npm package version](https://badgen.net/npm/v/ttrpg-tools)](https://npmjs.com/package/ttrpg-tools)
+[![Npm package total downloads](https://badgen.net/npm/dt/ttrpg-tools)](https://npmjs.com/package/ttrpg-tools)
+[![GitHub issues](https://img.shields.io/github/issues/jhstoops/ttrpg-tools.svg)](https://GitHub.com/jhstoops/ttrpg-tools/issues/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jhstoops/ttrpg-tools/graphs/commit-activity)
+[![Maintainer](https://img.shields.io/badge/maintainer-JHStoops-blue)](https://GitHub.com/jhstoops)
+[![Twitter](https://badgen.net/badge/icon/twitter?icon=twitter&label)](https://twitter.com/jhstoops)
+
 Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.
 
 1. [How To Import](#how-to-import)
