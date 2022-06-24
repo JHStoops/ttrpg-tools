@@ -4,6 +4,7 @@ import dndLanguages from '../data/languages.json'
 import occupations from '../data/occupations.json'
 import races from '../data/races.json'
 import { generateNpcName, generateTownName } from './names.js'
+export {classes, dndLanguages as languages, occupations}
 
 /**
  * @param {String} familyName - Specify the character's family name.
