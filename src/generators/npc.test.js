@@ -1,6 +1,8 @@
-const { generateNpc } = require('./npc')
-const { givenNames } = require('../data/names.json')
-const races = require('../data/races.json')
+import { generateNpc } from './npc.js'
+import names from '../data/names.json'
+import races from '../data/races.json'
+
+const { givenNames } = names
 
 describe('generateNpc', () => {
   it('should exist', () => {

@@ -1,4 +1,4 @@
-const { generateNpcName, generateTownName } = require('./names')
+import { generateNpcName, generateTownName } from './names.js'
 
 describe('generateTownName', () => {
   it('should exist', () => {

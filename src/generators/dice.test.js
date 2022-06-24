@@ -1,4 +1,4 @@
-const dice = require('./dice')
+import * as dice from './dice.js'
 
 describe('dice', () => {
   it('should exist', () => {

@@ -1,4 +1,4 @@
-const { getRandomElement, getRandomInteger } = require('./utils')
+import { getRandomElement, getRandomInteger } from './utils.js'
 
 describe('utils', () => {
   describe('getRandomInteger', () => {

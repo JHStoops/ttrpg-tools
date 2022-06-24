@@ -42,6 +42,7 @@ module.exports = {
     "jest/prefer-expect-assertions": "off",
     "jest/prefer-strict-equal": "off",
     "jest/no-hooks": "off",
-    "jest/no-disabled-tests": "warn"
+    "jest/no-disabled-tests": "warn",
+    "jest/require-hook": "off"
   },
 };

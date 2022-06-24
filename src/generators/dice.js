@@ -1,4 +1,4 @@
-import { getRandomInteger } from '../lib/utils'
+import { getRandomInteger } from '../lib/utils.js'
 
 /**
  * @description Takes an object of dice types and counts to return the rolled results.

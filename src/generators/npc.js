@@ -1,9 +1,9 @@
-import { getRandomElement } from '../lib/utils'
+import { getRandomElement } from '../lib/utils.js'
 import classes from '../data/classes.json'
 import dndLanguages from '../data/languages.json'
 import occupations from '../data/occupations.json'
 import races from '../data/races.json'
-import { generateNpcName, generateTownName } from './names'
+import { generateNpcName, generateTownName } from './names.js'
 
 /**
  * @param {String} familyName - Specify the character's family name.

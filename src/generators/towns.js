@@ -1,7 +1,7 @@
-import { getRandomElement, getRandomInteger } from '../lib/utils'
+import { getRandomElement, getRandomInteger } from '../lib/utils.js'
 import dndRaces from '../data/races.json'
-import { generateTownName } from './names'
-import { generateNpc } from './npc'
+import { generateTownName } from './names.js'
+import { generateNpc } from './npc.js'
 
 const townSizes = {
   xs: { min: 5, max: 20 },

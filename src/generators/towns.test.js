@@ -1,5 +1,5 @@
-const { generateTown } = require('./towns')
-const dndRaces = require('../data/races.json')
+import { generateTown } from './towns.js'
+import dndRaces from '../data/races.json'
 
 describe('generateTown', () => {
   it('should exist', () => {
