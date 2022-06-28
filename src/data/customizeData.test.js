@@ -1,11 +1,39 @@
-import { data } from './customizeData'
+import classes from './classes.json'
+import dndLanguages from './languages.json'
+import npcNames from './names.json'
+import occupations from './occupations.json'
+import races from './races.json'
+import townNames from './towns.json'
+import { data } from './customizeData.js'
 
 describe('customizeData', () => {
   describe('classes', () => {
-    it.todo('should get available classes')
-    it.todo('should get original classes')
-    it.todo('should customize classes')
-    it.todo('should reset classes')
+    it('should get available classes', () => {
+      expect(data.classes.get()).toEqual(classes)
+    })
+
+    it('should get original classes', () => {
+      expect(data.classes.getOriginal()).toEqual(classes)
+    })
+
+    it('should customize classes', () => {
+      const customClasses = [ 'customizing', 'classes', 'is', 'fun!' ]
+      const customizedClasses = data.classes.customize(customClasses, true)
+
+      expect(customizedClasses).toEqual(customClasses)
+    })
+
+    it('should reset classes', () => {
+      const customClasses = [ 'customizing', 'classes', 'is', 'fun!' ]
+      const customizedClasses = data.classes.customize(customClasses, true)
+
+      // First make sure customization took place
+      expect(customizedClasses).toEqual(customClasses)
+
+      // Then test that reset takes place
+      data.classes.reset()
+      expect(data.classes.get()).toEqual(classes)
+    })
   })
 
   describe('languages', () => {

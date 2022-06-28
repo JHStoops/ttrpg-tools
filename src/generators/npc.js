@@ -1,5 +1,5 @@
 import { getRandomElement } from '../lib/utils.js'
-import { data } from '../data/customizeData'
+import { data } from '../data/customizeData.js'
 import { generateNpcName, generateTownName } from './names.js'
 
 /**

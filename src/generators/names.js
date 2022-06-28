@@ -1,5 +1,5 @@
 import { getRandomElement } from '../lib/utils.js'
-import { data } from '../data/customizeData'
+import { data } from '../data/customizeData.js'
 
 export function generateNpcName(sex) {
   if (!sex) throw Error('generateNpcName(): sex is a required parameter.')
