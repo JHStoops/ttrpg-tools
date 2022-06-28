@@ -1,0 +1,81 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "jest/globals": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "plugin:jest/all"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": [
+    "jest"
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [
+          ".js",
+          ".json"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "array-bracket-spacing": [
+      "error",
+      "always"
+    ],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "default-case": "off",
+    "eqeqeq": "warn",
+    "import/extensions": [
+      "error",
+      "always"
+    ],
+    "import/prefer-default-export": "off",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-hooks": "off",
+    "jest/prefer-expect-assertions": "off",
+    "jest/prefer-strict-equal": "off",
+    "jest/require-hook": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 130,
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-debugger": "warn",
+    "no-lonely-if": "off",
+    "no-param-reassign": "error",
+    "no-plusplus": "off",
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "variables": true
+      }
+    ],
+    "semi": [
+      "warn",
+      "never"
+    ],
+    "valid-jsdoc": "warn"
+  }
+}
