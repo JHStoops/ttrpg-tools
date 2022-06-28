@@ -1,6 +1,6 @@
 import { getRandomElement, getRandomInteger } from '../lib/utils.js'
 import dndRaces from '../data/races.json'
-import { generateTownName } from './names.js'
+import { generateTownName } from './names/townNames.js'
 import { generateNpc } from './npc.js'
 
 const townSizes = {
