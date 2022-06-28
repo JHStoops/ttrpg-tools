@@ -1,4 +1,4 @@
-import { generateNpcName } from './npcNames.js'
+import { generateNpcName, generateTownName } from './names.js'
 
 describe('generateNpcName', () => {
   it('should exist', () => {
@@ -14,5 +14,16 @@ describe('generateNpcName', () => {
 
   it('should throw an error on missing `sex` parameter', () => {
     expect(() => generateNpcName()).toThrow(Error('generateNpcName(): sex is a required parameter.'))
+  })
+})
+
+describe('generateTownName', () => {
+  it('should exist', () => {
+    expect(generateTownName).toBeInstanceOf(Function)
+  })
+
+  it('should generate a Town name', () => {
+    const townName = generateTownName()
+    expect(typeof townName).toBe('string')
   })
 })

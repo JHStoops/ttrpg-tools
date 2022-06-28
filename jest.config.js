@@ -30,11 +30,13 @@ export default {
   // An array of regexp pattern strings used to skip coverage collection
   coveragePathIgnorePatterns: [
     '/.git/',
+    '/dist/',
     '/coverage/',
     '/node_modules/',
     'jest.config.js',
     '.eslintrc.js',
     'webpack.config.js',
+    'test-code.js'
   ],
 
   // Indicates which provider should be used to instrument code for coverage

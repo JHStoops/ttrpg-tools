@@ -1,6 +1,6 @@
 import { getRandomElement, getRandomInteger } from '../lib/utils.js'
-import dndRaces from '../data/races.json'
-import { generateTownName } from './names/townNames.js'
+import { data } from '../data/customizeData'
+import { generateTownName } from './names.js'
 import { generateNpc } from './npc.js'
 
 const townSizes = {
@@ -26,11 +26,11 @@ export function generateTown({ name, races, size } = {}) {
   // Randomly assign races to town unless specified
   const townRaces = []
   if (Array.isArray(races)) {
-    races.forEach((race) => Object.keys(dndRaces).includes(race) && townRaces.push(dndRaces[race]))
+    races.forEach((race) => Object.keys(data.races.get()).includes(race) && townRaces.push(data.races.get()[race]))
   }
   if (!townRaces.length) {
     const prevalentRacesCount = getRandomInteger(5, 1)
-    Array(prevalentRacesCount).fill('').forEach(() => townRaces.push(getRandomElement(Object.values(dndRaces))))
+    Array(prevalentRacesCount).fill('').forEach(() => townRaces.push(getRandomElement(Object.values(data.races.get()))))
   }
 
   // Assign languages based on prevalent races

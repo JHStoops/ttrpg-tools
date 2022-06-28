@@ -1,8 +1,5 @@
 import { generateNpc } from './npc.js'
-import names from '../data/names.json'
-import races from '../data/races.json'
-
-const { givenNames } = names
+import { data } from '../data/customizeData'
 
 describe('generateNpc', () => {
   it('should exist', () => {
@@ -25,13 +22,13 @@ describe('generateNpc', () => {
   describe('specified sex', () => {
     it('should use provided sex (male)', () => {
       const npc = generateNpc({ sex: 'male' })
-      expect(givenNames.male).toContain(npc.givenName)
+      expect(data.npcNames.get().givenNames.male).toContain(npc.givenName)
       expect(npc.sex).toBe('male')
     })
 
     it('should use provided sex (female)', () => {
       const npc = generateNpc({ sex: 'female' })
-      expect(givenNames.female).toContain(npc.givenName)
+      expect(data.npcNames.get().givenNames.female).toContain(npc.givenName)
       expect(npc.sex).toBe('female')
     })
 
@@ -64,8 +61,8 @@ describe('generateNpc', () => {
 
   describe('specified race', () => {
     it('should use provided race', () => {
-      const npc = generateNpc({ race: Object.keys(races)[0] })
-      expect(npc.race).toEqual(Object.values(races)[0])
+      const npc = generateNpc({ race: Object.keys(data.races.get())[0] })
+      expect(npc.race).toEqual(Object.values(data.races.get())[0])
     })
   })
 
