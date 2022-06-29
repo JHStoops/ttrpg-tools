@@ -1,8 +1,14 @@
 import { getRandomElement } from '../lib/utils.js'
 import { data } from '../data/customizeData.js'
 
+/**
+ * @description Generate a name for an NPC.
+ * @param {String} sex - Specify the sex of the NPC. Required to be 'male' or 'female'.
+ * @returns {Object} an object with the name NPC's name parts.
+ */
 export function generateNpcName(sex) {
   if (!sex) throw Error('generateNpcName(): sex is a required parameter.')
+  if (![ 'male', 'female' ].includes(sex)) throw Error("generateNpcName(): sex must be 'male' or 'female'.")
   let possibleGivenNames = []
   if (sex === 'male') possibleGivenNames = data.npcNames.get().givenNames.male
   if (sex === 'female') possibleGivenNames = data.npcNames.get().givenNames.female
@@ -11,6 +17,11 @@ export function generateNpcName(sex) {
   return { familyName, givenName, fullName: `${givenName} ${familyName}` }
 }
 
+/**
+ * @description Generate a name for a town.
+ * @param {Boolean} withDescriptor - Whether to guarantee a descriptor name part, otherwise there's a 20% chance of including a descriptor name part.
+ * @returns {String} The town's name.
+ */
 export function generateTownName(withDescriptor) {
   let townName = ''
 

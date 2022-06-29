@@ -17,43 +17,49 @@ Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG cam
     - [Name Generators](#name-generators)
     - [NPC Generator](#npc-generator)
     - [Town Generator](#town-generator)
-3. [Supported Races](#supported-races)
-4. [Supported Classes](#supported-classes)
-5. [Contribute](#contribute)
-6. [Contact Information](#contact-information)
+3. [Customize Data](#customize-data)
+    - [Classes, Languages, and Occupations](#classes-languages-and-occupations)
+    - [Races](#races)
+    - [NPC Name Parts](#npc-name-parts)
+    - [Town Name Parts](#town-name-parts)
+4. [Supported Races](#supported-races)
+5. [Supported Classes](#supported-classes)
+6. [Contribute](#contribute)
+7. [Contact Information](#contact-information)
 
 ## How to Import
 
-ES Module
+ES Module Default Export
 
 ```js
-import ttrpgTools from 'ttrpg-tools' // default export
+import ttrpgTools from 'ttrpg-tools'
 
 const {
-  coin, d4, d6, d8, d10, d12, d20, d100, diceRoll,
-  generateNpcName, generateTownName, generateNpc,
-  generateTown
+  coin, d4, d6, d8, d10, d12, d20, d100, diceRoll, data,
+  generateNpcName, generateTownName, generateNpc, generateTown
 } = ttrpgTools
 ```
 
-CommonJS
+ES Module Named Exports
 
 ```js
-const {
-  coin, d4, d6, d8, d10, d12, d20, d100, diceRoll,
-  generateNpcName, generateTownName, generateNpc,
-  generateTown
-} = require('ttrpg-tools').default
+import {
+  coin, d4, d6, d8, d10, d12, d20, d100, diceRoll, data,
+  generateNpcName, generateTownName, generateNpc, generateTown
+}  from 'ttrpg-tools'
 ```
 
 ## API
 
 ### Standard Dice
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+| Parameter | Type    | Default | Description |
+| --------- | ----    | ------- | ----------- |
+| dieCount  | Number  | 1       | How many dice to roll. |
+| verbose   | Boolean | false   | Whether to return an object with individual roll results and total. |
 
-const { d4, d6, d8, d10, d12, d20, d100 } = ttrpgTools
+```js
+import { d4, d6, d8, d10, d12, d20, d100 } from 'ttrpg-tools'
 
 const d4Roll = d4() // Defaults to a single die
 const d6RollThreeDice = d6(3)
@@ -64,7 +70,7 @@ const d20Roll = d20()
 const d100Roll = d100()
 ```
 
-```json
+```js
 // d4 roll - single die
 { "4": 3 }
 
@@ -73,9 +79,10 @@ const d100Roll = d100()
 
 // d8 roll - five dice, verbose
 { "8": {
-  "rolls": [3, 7, 4, 8, 6],
-  "total": 28
-}}
+    "rolls": [3, 7, 4, 8, 6],
+    "total": 28
+  }
+}
 
 // d10 roll - single die
 { "10": 8 }
@@ -90,19 +97,17 @@ const d100Roll = d100()
 { "100": 42 }
 ```
 
-#### _Parameters: d4, d6, d8, d10, d12, d20, and d100_
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| dieCount | Number | How many dice to roll. Default: 1 |
-| verbose | Boolean | Whether to return an object with individual roll results and total. |
+<br />
 
 ### Custom Dice
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+| Parameter | Type    | Default | Description |
+| --------  | ----    | ------- | ----------- |
+| dice      | Object  |         | (Required) How many coins to flip. |
+| asNumeric | Boolean | false   | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
 
-const { diceRoll } = ttrpgTools
+```js
+import { diceRoll } from 'ttrpg-tools'
 
 const rollManyDieTypes = diceroll({
   "4": 2,
@@ -114,7 +119,7 @@ const rollManyDieTypes = diceroll({
 }, true)
 ```
 
-```json
+```js
 // diceRoll with multiple die types
 {
   "4": {
@@ -145,26 +150,24 @@ const rollManyDieTypes = diceroll({
 }
 ```
 
-#### _Parameters: diceRoll_
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| dice | Object | How many coins to flip. Default: 1 |
-| asNumeric | Boolean | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
+<br />
 
 ### Coin Flips
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+| Parameter | Type    | Default | Description |
+| --------  | ----    | ------- | ----------- |
+| coinFlips | Number  | 1       | Specify which die types and their counts to be rolled. |
+| verbose   | Boolean | false   | Whether to return an object with individual roll results and total. |
 
-const { coin } = ttrpgTools
+```js
+import { coin } from 'ttrpg-tools'
 
 const flippedCoin = coin() // Defaults to one coin flip
 const flippedCoins = coin(3)
 const flippedCoinsNumericResults = coin(3, true) // Replace "heads" and "tails" with 1 and 0 respectively.
 ```
 
-```json
+```js
 // flippedCoin
 { "heads": 1,  "tails": 0 }
 
@@ -175,54 +178,63 @@ const flippedCoinsNumericResults = coin(3, true) // Replace "heads" and "tails" 
 { "1": 2,  "0": 1 }
 ```
 
-#### _Parameters: coin_
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| coinFlips | Number | Specify which die types and their counts to be rolled. |
-| verbose | Boolean | Whether to return an object with individual roll results and total. |
+<br />
 
 ### Name Generators
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+| Parameter      | Type    | Default | Description |
+| ---------      | ----    | ------- | ----------- |
+| *generateNpcName*
+| sex            | String  |         | (Required) The sex of the NPC: 'male' or 'female'. |
+|
+| *generateTownName*
+| withDescriptor | Boolean | false   | Whether to guarantee a descriptor name part. If false, there's only a 20% chance to add it. |
 
-const { generateNpcName, generateTownName } = ttrpgTools
+```js
+import { generateNpcName, generateTownName } from 'ttrpg-tools'
 
 const npcName = generateNpcName('male')
 const townName = generateTownName()
+const townNameWithDescriptor = generateTownName(true)
 ```
 
-```json
+```js
 // Randomly generated NPC name
-"David Heder"
+"Jon Heder"
 
 // Randomly generated town name
-"Lower Spruceport"
+"Spruceport"
+
+// Randomly generated town name with guaranteed descriptor name part
+"Little Redwoods"
 ```
 
-#### _Parameters: generateNpcName_
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| sex | String | (Required) the sex of the NPC: 'male' or 'female'. |
-
-#### _Parameters: generateTownName_
-
-None
+<br />
 
 ### NPC Generator
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+The parameters are passed in as a single object, with the property names defined below.
 
-const { generateNpc } = ttrpgTools
+| Property       | Type           | Default | Description |
+| --------       | ----           | ------- | ----------- |
+| familyName     | String         |         | Specify NPC's family/last name. |
+| givenName      | String         |         | Specify NPC's given/first name. |
+| homeTown       | String         |         | Specify name of NPC's hometown. |
+| languages      | Array[Strings] |         | Specify the languages spoken by the NPC. |
+| npcClass       | String         |         | Specify NPC's class. (Can deviate from `Supported Classes` section below.) |
+| occupation     | String         |         | Specify NPC's occupation. |
+| race           | Array[Strings] |         | Specify the NPC's race. (Must match races from `Supported Races` section below.) |
+| randomizeClass | Boolean        |         | Whether to ensure the NPC has a class. If false, then NPC has 10% of having a class. |
+| sex            | String         |         | Specify NPC's sex. |
+
+```js
+import { generateNpc } from 'ttrpg-tools'
 
 const npc = generateNpc()
 const npcWithSpecifiedName = generateNpc({ givenName: 'Tina', familyName: 'Fey' })
 ```
 
-```json
+```js
 {
   // NPC's name
   "fullName": "Tina Fey",
@@ -236,7 +248,7 @@ const npcWithSpecifiedName = generateNpc({ givenName: 'Tina', familyName: 'Fey' 
   "homeTown": "New York City",
 
   // NPC's occupation
-  "occupation": "Inn Keep",
+  "occupation": "Actor",
 
   // NPC's class. Unless specified or `randomizeClass` flag is passed, NPCs will only have a class 10% of the time.
   "class": "Bard",
@@ -246,48 +258,40 @@ const npcWithSpecifiedName = generateNpc({ givenName: 'Tina', familyName: 'Fey' 
 
   // NPC's race
   "race": {
-      "name": "Human",
-      "avgAgeOfDeath": 100,
-      "avgHeight": 6,
-      "avgWeight": 180,
-      "size": "medium",
-      "baseClimbSpeed": 15,
-      "baseFlightSpeed": 0,
-      "baseSwimSpeed": 15,
-      "baseWalkSpeed": 30,
-      "languages": [ "Common" ]
-    }
+    "name": "Human",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6,
+    "avgWeight": 180,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [ "Common" ]
+  }
 }
 ```
 
-#### _Parameters: generateNpc_
-
-The parameters are passed in as a single object, with the property names defined below.
-
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| familyName | String | Specify NPC's family/last name. (Must be present with `givenName`) |
-| givenName | String | Specify NPC's given/first name. (Must be present with `familyName`) |
-| homeTown | String | Specify name of NPC's hometown. |
-| languages | Array[Strings] | Specify the languages spoken by the NPC. |
-| npcClass | String | Specify NPC's class. (Can deviate from `Supported Classes` section below.) |
-| occupation | String | Specify NPC's occupation. |
-| race | Array[Strings] | Specify the NPC's race. (Must match races from `Supported Races` section below.) |
-| randomizeClass | Boolean | Whether to ensure the NPC has a class. If false, then NPC has 10% of having a class. |
-| sex | String | Specify NPC's sex. |
+<br />
 
 ### Town Generator
 
-```js
-import ttrpgTools from 'ttrpg-tools'
+The parameters are passed in as a single object, with the property names defined below.
 
-const { generateTown } = ttrpgTools
+| Property | Type           | Description |
+| -------- | ----           | ----------- |
+| name     | String         | Specify the town name. |
+| races    | Array[Strings] | Specify the prevalent races in the town. Must match races from `Supported Races` section below. |
+| size     | String         | Specify the town population size ranges.  xs: 5-20, sm: 21-50, md: 51-100, lg: 101-250, xl: 251-1000 |
+
+```js
+import { generateTown } from 'ttrpg-tools'
 
 const town = generateTown()
 const townWithSpecifiedName = generateTown({ name: 'Feywild City' })
 ```
 
-```json
+```js
 {
   // Town name
   "name": "Oakport",
@@ -320,15 +324,183 @@ const townWithSpecifiedName = generateTown({ name: 'Feywild City' })
 }
 ```
 
-#### _Parameters: generateTown_
+<br />
 
-The parameters are passed in as a single object, with the property names defined below.
+## Customize Data
 
-| Property | Type | Description |
-| -------- | ---- | ----------- |
-| name     | String | Specify the town name. |
-| races    | Array[Strings] | Specify the prevalent races in the town. Must match races from `Supported Races` section below. |
-| size     | String | Specify the town population size ranges.  xs: 5-20, sm: 21-50, md: 51-100, lg: 101-250, xl: 251-1000 |
+This library is intended to continually grow its data to provide the best procedurally generative experience possible, but may not grow as fast as you would like. In an attempt to roll high initiative in that combat, I introduce to you the ability to customize the data!
+
+The data methods are made available via the `data` named export.
+
+```js
+import { data } from 'ttrpg-tools'
+```
+
+### Classes, Languages, and Occupations
+
+Classes, Languages, and Occupations data are all arrays of strings. The examples below could be appllied to any of these three data sets.
+
+```js
+// Get the available list of classes (customized or not)
+data.classes.get()
+
+// Get the list of classes provided originally by ttrpg-tools
+// It can be useful to use this if you want to use most classes, but filter out a few for when you call the customize method.
+data.classes.getOriginal()
+
+// Customize the available classes (Append to existing classes)
+// Note: This will append your list of new classes to the end of the available list.
+// Note: Duplicates are removed.
+data.classes.customize(['Couch Potato'])
+
+// Customize the available classes (Replace existing classes)
+// Note: This will replace the existing classes with the list of classes you provide here.
+data.classes.customize(['Couch Potato'], true)
+
+// Reset to factory settings
+data.classes.reset()
+```
+
+<br />
+
+### Races
+
+Races data is stored in this format:
+
+```js
+{
+  "Human": {
+    "name": "Human",
+    "avgAgeOfDeath": 100,
+    "avgHeight": 6.0,
+    "avgWeight": 180.0,
+    "size": "medium",
+    "baseClimbSpeed": 15,
+    "baseFlightSpeed": 0,
+    "baseSwimSpeed": 15,
+    "baseWalkSpeed": 30,
+    "languages": [
+      "Common"
+    ]
+  }
+}
+```
+
+Note: Any missing properties will be filled in with the Human's values.
+Note: You can add custom properties to a race.
+Note: You can override a race by using the same key name with a new race object.
+
+```js
+// Get the available races (customized or not)
+data.races.get()
+
+// Get the races data originally provided by ttrpg-tools
+data.races.getOriginal()
+
+// Customize the available races (Append to existing races)
+// Note: The remaining expected properties will be filled in using Human values.
+data.races.customize({
+  'Couch Potato': {
+    name: 'Couch Potato', // Required
+    avgAgeOfDeath: 30,
+    size: 'large',
+    customPropertyThatIWouldLikeToInclude: 42
+  }
+ })
+
+// Customize the available races (Replace existing races)
+// Note: This will replace all races with the races provided.
+data.races.customize({
+  'Couch Potato': {
+    name: 'Couch Potato', // Required
+    avgAgeOfDeath: 30,
+    size: 'large',
+    customPropertyThatIWouldLikeToInclude: 42
+  }
+ }, true)
+
+// Reset to factory settings
+data.races.reset()
+```
+
+<br />
+
+### NPC Name Parts
+
+NPC Name Parts data is stored in this format:
+
+```js
+{
+  givenNames: {
+    female: ['Brienna'],
+    male: ['Bryce'],
+  },
+  familyNames: ['Lastnamington']
+}
+```
+
+Note: You do not have to customize all name parts arrays when you call the `customize` method. For example, you could only pass in `{ givenNames: { male: ['Brad', 'Chad', 'Lad']}}` to just affect the male givenNames.
+
+```js
+// Get the available NPC name parts (customized or not)
+data.npcNames.get()
+
+// Get the NPC name parts data originally provided by ttrpg-tools
+data.npcNames.getOriginal()
+
+// Customize the available NPC name parts (Append to existing name parts)
+// Note: This example adds the female and male given names to the available name parts data, and it leaves the familyNames as it is.
+data.npcNames.customize({
+  givenNames: {
+    female: [ 'Lynn', 'Patricia', 'Gertrude' ],
+    male: [ 'Carl', 'Buster' ]
+  }
+})
+
+// Customize the available NPC name parts (Replace existing NPC name parts)
+// Note: This will replace all femilyNames with the provided list, but the male and female given names will be left alone.
+data.npcNames.customize({ familyNames: ['Owlbearslayer'] }, true)
+
+// Reset to factory settings
+data.npcNames.reset()
+```
+
+<br />
+
+### Town Name Parts
+
+Town Name Parts data is stored in this format:
+
+```js
+{
+  descriptors: ['Little', 'Higher', 'Grand']
+  prefixes: ['Red', 'Asp']
+  suffixes: ['woods', 'river', ' Town']
+}
+```
+
+Note: You do not have to customize all name parts arrays when you call the `customize` method. For example, you could only pass in `{ descriptors: ['Brad', 'Chad', 'Lad'] }` to just affect the male descriptor name parts.
+
+```js
+// Get the available town name parts (customized or not)
+data.townNames.get()
+
+// Get the NPC name parts data originally provided by ttrpg-tools
+data.townNames.getOriginal()
+
+// Customize the available town name parts (Append to existing name parts)
+// Note: This example adds the descriptor and prefix name parts to the currently available town name parts data.
+data.townNames.customize({ descriptors: ['Lower'], prefixes: ['Green', 'Oak'] })
+
+// Customize the available town name parts (Replace existing town name parts)
+// Note: This will replace suffix name parts data with the provided list of suffixes.
+data.townNames.customize({ suffixes: ['Owlbear', 'Mound'] }, true)
+
+// Reset to factory settings
+data.townNames.reset()
+```
+
+<br />
 
 ## Supported Races
 
@@ -390,6 +562,7 @@ Currently, the only races supported are form D&D 5e.
 - Yuan-ti
 
 </details>
+<br/>
 
 ## Supported Classes
 
@@ -413,12 +586,15 @@ Currently, the only classes supported are the basic D&D 5e class. More will be a
 - Wizard
 
 </details>
+<br/>
 
 ## Contribute
 
 I welcome any help you are willing to provide! Simply add an "Issue" in the [Issues section in Github](https://github.com/JHStoops/ttrpg-tools/issues) or fork the [project](https://github.com/JHStoops/ttrpg-tools) and create a pull request. Feel free to send me an email or tweet if you want to have a conversation.
 
 Thank you for you support!
+
+<br/>
 
 ## Contact Information
 

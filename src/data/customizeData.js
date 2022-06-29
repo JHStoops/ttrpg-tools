@@ -32,17 +32,17 @@ export function customizeArrayData(newData, dataType, replace) {
 
   // Update data!
   if (dataType === 'classes') {
-    availableClasses = replace ? newData : [ ...availableClasses, ...newData ]
+    availableClasses = [ ...(replace ? newData : [ ...availableClasses, ...newData ]) ]
     return availableClasses
   }
 
   if (dataType === 'languages') {
-    availableLanguages = replace ? newData : [ ...availableLanguages, ...newData ]
+    availableLanguages = [ ...(replace ? newData : [ ...availableLanguages, ...newData ]) ]
     return availableLanguages
   }
 
   if (dataType === 'occupations') {
-    availableOccupations = replace ? newData : [ ...availableOccupations, ...newData ]
+    availableOccupations = [ ...(replace ? newData : [ ...availableOccupations, ...newData ]) ]
     return availableOccupations
   }
 }

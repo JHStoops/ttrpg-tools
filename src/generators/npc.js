@@ -25,7 +25,9 @@ export function generateNpc({
 
   let npcClassFinal = npcClass ?? ''
   if (randomizeClass || (!npcClass && Math.random() > 0.9)) npcClassFinal = getRandomElement(data.classes.get()) // Unless a class is specified, 90% of people are average Joe's with zero class
-  const name = givenName && familyName ? { givenName, familyName, fullName: `${givenName} ${familyName}` } : generateNpcName(npcSex)
+  const npcGivenName = givenName ?? generateNpcName(npcSex).givenName
+  const npcFamilyName = familyName ?? generateNpcName(npcSex).familyName
+  const name = { givenName: npcGivenName, familyName: npcFamilyName, fullName: `${npcGivenName} ${npcFamilyName}` }
 
   return {
     class: npcClassFinal,
