@@ -11,11 +11,11 @@ export function generateNpcName(sex) {
   return { familyName, givenName, fullName: `${givenName} ${familyName}` }
 }
 
-export function generateTownName() {
+export function generateTownName(withDescriptor) {
   let townName = ''
 
   // Add a descriptor to the town name 20% of the time
-  if (Math.random > 0.8) townName += getRandomElement(data.townNames.get().descriptors)
+  if (Math.random > 0.8 || withDescriptor) townName += `${getRandomElement(data.townNames.get().descriptors)} `
 
   townName += getRandomElement(data.townNames.get().prefixes)
   townName += getRandomElement(data.townNames.get().suffixes)

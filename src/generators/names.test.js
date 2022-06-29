@@ -1,4 +1,5 @@
 import { generateNpcName, generateTownName } from './names.js'
+import { data } from '../data/customizeData.js'
 
 describe('generateNpcName', () => {
   it('should exist', () => {
@@ -25,5 +26,10 @@ describe('generateTownName', () => {
   it('should generate a Town name', () => {
     const townName = generateTownName()
     expect(typeof townName).toBe('string')
+  })
+
+  it('should generate a Town name with a descriptor', () => {
+    const townName = generateTownName(true)
+    expect(data.townNames.get().descriptors).toContain(townName.split(' ')[0])
   })
 })

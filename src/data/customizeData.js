@@ -24,40 +24,42 @@ let townNameDescriptors = [ ...descriptors ]
 let townNamePrefixes = [ ...prefixes ]
 let townNameSuffixes = [ ...suffixes ]
 
-function customizeArrayData(newData, dataType, replace) {
+export function customizeArrayData(newData, dataType, replace) {
   // Make sure newData has correct shape
   if (newData?.constructor !== Array) throw Error('customizeArrayData(): newData must be an Array.')
   if (Object.values(newData).some((newClass) => newClass.constructor !== String)) throw Error('customizeArrayData(): newData must be an Array of strings.')
+  if (![ 'classes', 'languages', 'occupations' ].includes(dataType)) throw Error('customizeArrayData(): dataType must be one of: classes, languages, or occupations.')
 
   // Update data!
-  switch (dataType) {
-    case 'classes':
-      availableClasses = replace ? newData : [ ...availableClasses, ...newData ]
-      return availableClasses
-    case 'languages':
-      availableLanguages = replace ? newData : [ ...availableLanguages, ...newData ]
-      return availableLanguages
-    case 'occupations':
-      availableOccupations = replace ? newData : [ ...availableOccupations, ...newData ]
-      return availableOccupations
+  if (dataType === 'classes') {
+    availableClasses = replace ? newData : [ ...availableClasses, ...newData ]
+    return availableClasses
   }
 
-  return []
+  if (dataType === 'languages') {
+    availableLanguages = replace ? newData : [ ...availableLanguages, ...newData ]
+    return availableLanguages
+  }
+
+  if (dataType === 'occupations') {
+    availableOccupations = replace ? newData : [ ...availableOccupations, ...newData ]
+    return availableOccupations
+  }
 }
 
 function customizeRacesData(newRaces, replace) {
   // Make sure newRaces has correct shape
   if (newRaces?.constructor !== Object) throw Error('customizeRacesData(): newRaces must be an Object.')
-  if (Object.value(newRaces).some((newClass) => newClass.constructor !== Object)) throw Error('customizeRacesData(): newRaces must be an Object of Race Objects.')
-  if (Object.value(newRaces).some((newClass) => !newClass.name || newClass.name.constructor !== String)) throw Error('customizeRacesData(): newRaces must be Object and have a `name` string property.')
+  if (Object.values(newRaces).some((newClass) => newClass.constructor !== Object)) throw Error('customizeRacesData(): newRaces must be an Object of Race Objects.')
+  if (Object.values(newRaces).some((newClass) => !newClass.name || newClass.name.constructor !== String)) throw Error('customizeRacesData(): newRaces must be Object and have a `name` string property.')
 
   // Apply Human properties as fallback values for certain data properties.
   // Allow user to customize with own data properties.
   // Allow user to override existing race objects
-  const normalizedRaces = newRaces.map((newRace) => ({ ...races.Human, ...newRace }))
+  const normalizedRaces = Object.values(newRaces).reduce((acc, newRace) => ({ ...acc, [newRace.name]: { ...races.Human, ...newRace } }), {})
 
   // Update data!
-  availableRaces = replace ? normalizedRaces : [ ...availableRaces, ...normalizedRaces ]
+  availableRaces = replace ? normalizedRaces : { ...availableRaces, ...normalizedRaces }
   return availableRaces
 }
 
@@ -149,10 +151,10 @@ export const data = {
 
       // Make sure newData has correct shape
       if (newData?.constructor !== Object) throw Error('customizeNpcNameData(): newData must be an object.')
-      if (!newFamilyNames && !newGivenNames) throw Error('customizeNpcNameData(): newData must at least one of these properties: familyNames, givenNames.')
-      if (newGivenNames && newGivenNames?.constructor !== Object) throw Error('customizeNpcNameData(): newGivenNames must be an object.')
-      if (newGivenNames && !(newGivenNames.male || newGivenNames.female)) throw Error('customizeNpcNameData(): newGivenNames must have at least one of these properties: female, male.')
-      if (newFamilyNames && (newFamilyNames.constructor !== Array || newFamilyNames.some((newFamilyName) => newFamilyName.constructor !== String))) throw Error('customizeNpcNameData(): newData.newFamilyNames must be an Array of strings.')
+      if (!newFamilyNames && !newGivenNames) throw Error('customizeNpcNameData(): newData must have at least one of these properties: familyNames, givenNames.')
+      if (newGivenNames && newGivenNames?.constructor !== Object) throw Error('customizeNpcNameData(): givenNames must be an object.')
+      if (newGivenNames && !(newGivenNames.male || newGivenNames.female)) throw Error('customizeNpcNameData(): givenNames must have at least one of these properties: female, male.')
+      if (newFamilyNames && (newFamilyNames.constructor !== Array || newFamilyNames.some((newFamilyName) => newFamilyName.constructor !== String))) throw Error('customizeNpcNameData(): newData.familyNames must be an Array of strings.')
       if (newMaleNames && (newMaleNames.constructor !== Array || newMaleNames.some((newMaleName) => newMaleName.constructor !== String))) throw Error('customizeNpcNameData(): newData.givenNames.male must be an Array of strings.')
       if (newFemaleNames && (newFemaleNames.constructor !== Array || newFemaleNames.some((newFemaleName) => newFemaleName.constructor !== String))) throw Error('customizeNpcNameData(): newData.givenNames.female must be an Array of strings.')
 
@@ -161,7 +163,7 @@ export const data = {
       if (newMaleNames) maleGivenNames = replace ? newMaleNames : [ ...maleGivenNames, ...newMaleNames ]
       if (newFemaleNames) femaleGivenNames = replace ? newFemaleNames : [ ...femaleGivenNames, ...newFemaleNames ]
 
-      // TODO: Return customized name parts
+      return data.npcNames.get()
     },
 
     /**
@@ -216,7 +218,7 @@ export const data = {
 
     /**
      * @description Add new (or replace) races with a custom list of races.
-     * @param {Array} newRaces - An array of strings, custom races to add.
+     * @param {Object} newRaces - An array of strings, custom races to add.
      * @param {Boolean} replace - Whether to replace the available races with the newRaces.
      * @returns {Array} New list of available races.
      */
@@ -226,7 +228,7 @@ export const data = {
      * @description Reset customizations to original set of races.
      * @returns {undefined}
      */
-    reset() { availableRaces = [ ...races ] },
+    reset() { availableRaces = { ...races } },
   },
   townNames: {
     /**
@@ -259,16 +261,16 @@ export const data = {
       // Make sure newData has correct shape
       if (newData?.constructor !== Object) throw Error('customizeTownNameData(): newData must be an object.')
       if (!newDescriptors && !newPrefixes && !newSuffixes) throw Error('customizeTownNameData(): newData must have at least one of these properties: descriptors, prefixes, suffixes.')
-      if (newDescriptors && (newDescriptors.constructor !== Array || newDescriptors.some((newDescriptor) => newDescriptor.constructor !== String))) throw Error('customizeTownNameData(): newData.newDescriptors must be an Array of strings.')
-      if (newPrefixes && (newPrefixes.constructor !== Array || newPrefixes.some((newPrefix) => newPrefix.constructor !== String))) throw Error('customizeTownNameData(): newData.newPrefixes must be an Array of strings.')
-      if (newSuffixes && (newSuffixes.constructor !== Array || newSuffixes.some((newSuffix) => newSuffix.constructor !== String))) throw Error('customizeTownNameData(): newData.newSuffixes must be an Array of strings.')
+      if (newDescriptors && (newDescriptors.constructor !== Array || newDescriptors.some((newDescriptor) => newDescriptor.constructor !== String))) throw Error('customizeTownNameData(): newData.descriptors must be an Array of strings.')
+      if (newPrefixes && (newPrefixes.constructor !== Array || newPrefixes.some((newPrefix) => newPrefix.constructor !== String))) throw Error('customizeTownNameData(): newData.prefixes must be an Array of strings.')
+      if (newSuffixes && (newSuffixes.constructor !== Array || newSuffixes.some((newSuffix) => newSuffix.constructor !== String))) throw Error('customizeTownNameData(): newData.suffixes must be an Array of strings.')
 
       // Update data!
       if (newDescriptors) townNameDescriptors = replace ? newDescriptors : [ ...townNameDescriptors, ...newDescriptors ]
       if (newPrefixes) townNamePrefixes = replace ? newPrefixes : [ ...townNamePrefixes, ...newPrefixes ]
       if (newSuffixes) townNameSuffixes = replace ? newSuffixes : [ ...townNameSuffixes, ...newSuffixes ]
 
-      // TODO return customized town name parts
+      return data.townNames.get()
     },
 
     /**

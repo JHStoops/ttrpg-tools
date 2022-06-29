@@ -62,6 +62,10 @@ describe('dice', () => {
       }
     })
 
+    it('should throw error if dice is not an Object', () => {
+      expect(() => dice.diceRoll(1)).toThrow(Error('diceRoll(): dice parameter must be an Object.'))
+    })
+
     it('should throw error if dieType is not a Number', () => {
       expect(() => dice.diceRoll({ Owlbear: 10 })).toThrow(Error('diceRoll(): dice key must be an integer instance of Number.'))
     })

@@ -37,6 +37,7 @@
         "after": true
       }
     ],
+    "consistent-return": "warn",
     "default-case": "off",
     "eqeqeq": "warn",
     "import/extensions": [

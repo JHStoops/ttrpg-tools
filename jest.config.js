@@ -36,7 +36,7 @@ export default {
     'jest.config.js',
     '.eslintrc.js',
     'webpack.config.js',
-    'test-code.js'
+    'test-code.js',
   ],
 
   // Indicates which provider should be used to instrument code for coverage
