@@ -13,7 +13,8 @@
   "parserOptions": {
     "allowImportExportEverywhere": true,
     "ecmaVersion": "latest",
-    "requireConfigFile": false
+    "requireConfigFile": false,
+    "sourceType": "module"
   },
   "plugins": [
     "jest"
