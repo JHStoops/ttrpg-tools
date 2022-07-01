@@ -49,7 +49,7 @@ plugins:
     enabled: true
     channel: "eslint-7"
     config:
-      config: .codeclimate.eslintrc.js
+      config: .codeclimate.eslintrc.json
       extensions:
         - .js
         - .json
