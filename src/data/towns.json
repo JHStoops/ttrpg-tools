@@ -221,7 +221,7 @@
     "worth",
     "wright"
   ],
-  "postDescriptor": [
+  "postDescriptors": [
     "Canyon",
     "City",
     "Creek",
@@ -239,7 +239,7 @@
     "Vale",
     "Water"
   ],
-  "premade": [
+  "premades": [
     "Aberavon",
     "Aeby-on-Sea",
     "Aerilon",

@@ -19,10 +19,14 @@ let femaleGivenNames = [ ...female ]
 let npcFamilyNames = [ ...familyNames ]
 
 // Make name parts customizable
-const { descriptors, prefixes, suffixes } = townNames
+const {
+  descriptors, prefixes, suffixes, postDescriptors, premades,
+} = townNames
 let townNameDescriptors = [ ...descriptors ]
 let townNamePrefixes = [ ...prefixes ]
 let townNameSuffixes = [ ...suffixes ]
+let townNamePostDescriptors = [ ...postDescriptors ]
+let townNamePremades = [ ...premades ]
 
 export function customizeArrayData(newData, dataType, replace) {
   // Make sure newData has correct shape
@@ -240,6 +244,8 @@ export const data = {
         descriptors: townNameDescriptors,
         prefixes: townNamePrefixes,
         suffixes: townNameSuffixes,
+        postDescriptors: townNamePostDescriptors,
+        premades: townNamePremades,
       })
     },
 
@@ -251,24 +257,29 @@ export const data = {
 
     /**
      * @description Add new (or replace) town name parts with a custom list of town name parts.
-     * @param {Object} newData - An object of name parts. Expected properties: `descriptors`, `prefixes`, and `suffixes`.
+     * @param {Object} newData - An object of name parts. Expected properties: `descriptors`, `prefixes`, `suffixes`, `postDescriptors`.
      * @param {Boolean} replace - Whether to replace the available townNames with the newData.
      * @returns {Array} New list of available town name parts.
      */
     customize(newData, replace) {
-      const { descriptors: newDescriptors, prefixes: newPrefixes, suffixes: newSuffixes } = newData ?? {}
+      const {
+        descriptors: newDescriptors, prefixes: newPrefixes, suffixes: newSuffixes, postDescriptors: newPostDescriptors, premades: newPremades,
+      } = newData ?? {}
 
       // Make sure newData has correct shape
       if (newData?.constructor !== Object) throw Error('customizeTownNameData(): newData must be an object.')
-      if (!newDescriptors && !newPrefixes && !newSuffixes) throw Error('customizeTownNameData(): newData must have at least one of these properties: descriptors, prefixes, suffixes.')
+      if (!newDescriptors && !newPrefixes && !newSuffixes && !newPostDescriptors) throw Error('customizeTownNameData(): newData must have at least one of these properties: descriptors, prefixes, suffixes, postDescriptors.')
       if (newDescriptors && (newDescriptors.constructor !== Array || newDescriptors.some((newDescriptor) => newDescriptor.constructor !== String))) throw Error('customizeTownNameData(): newData.descriptors must be an Array of strings.')
       if (newPrefixes && (newPrefixes.constructor !== Array || newPrefixes.some((newPrefix) => newPrefix.constructor !== String))) throw Error('customizeTownNameData(): newData.prefixes must be an Array of strings.')
       if (newSuffixes && (newSuffixes.constructor !== Array || newSuffixes.some((newSuffix) => newSuffix.constructor !== String))) throw Error('customizeTownNameData(): newData.suffixes must be an Array of strings.')
+      if (newPostDescriptors && (newPostDescriptors.constructor !== Array || newPostDescriptors.some((newPostDescriptor) => newPostDescriptor.constructor !== String))) throw Error('customizeTownNameData(): newData.postDescriptors must be an Array of strings.')
 
       // Update data!
       if (newDescriptors) townNameDescriptors = replace ? newDescriptors : [ ...townNameDescriptors, ...newDescriptors ]
       if (newPrefixes) townNamePrefixes = replace ? newPrefixes : [ ...townNamePrefixes, ...newPrefixes ]
       if (newSuffixes) townNameSuffixes = replace ? newSuffixes : [ ...townNameSuffixes, ...newSuffixes ]
+      if (newPostDescriptors) townNamePostDescriptors = replace ? newPostDescriptors : [ ...townNamePostDescriptors, ...newPostDescriptors ]
+      if (newPremades) townNamePremades = replace ? newPremades : [ ...townNamePremades, ...newPremades ]
 
       return data.townNames.get()
     },
@@ -281,6 +292,8 @@ export const data = {
       townNameDescriptors = [ ...descriptors ]
       townNamePrefixes = [ ...prefixes ]
       townNameSuffixes = [ ...suffixes ]
+      townNamePostDescriptors = [ ...postDescriptors ]
+      townNamePremades = [ ...premades ]
     },
   },
 }

@@ -46,16 +46,16 @@ describe('generateNpc', () => {
       expect(npc.fullName).toBe(`${name.givenName} ${name.familyName}`)
     })
 
-    it('should generate a randomized name if `givenName` is not provided', () => {
+    it('should generate a randomized givenName if `givenName` is not provided', () => {
       const name = { familyName: 'R2D2' }
       const npc = generateNpc(name)
-      expect(npc.familyName).not.toBe(name.familyName)
+      expect(npc.familyName).toBe(name.familyName)
     })
 
-    it('should generate a randomized name if `familyName` is not provided', () => {
+    it('should generate a randomized familyName if `familyName` is not provided', () => {
       const name = { givenName: 'C3PO' }
       const npc = generateNpc(name)
-      expect(npc.givenName).not.toBe(name.givenName)
+      expect(npc.givenName).toBe(name.givenName)
     })
   })
 
