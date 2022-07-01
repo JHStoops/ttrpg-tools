@@ -1,8 +1,7 @@
 version: ~> 1.0
 branches:
   only:
-    - master
-    - prerelease
+    - main
 # Caching of node_modules disabled, due to an increase in delayed breakages
 cache:
   npm: false
