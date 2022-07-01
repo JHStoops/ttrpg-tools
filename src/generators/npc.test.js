@@ -1,5 +1,5 @@
 import { generateNpc } from './npc.js'
-import { data } from '../data/customizeData'
+import { data } from '../data/customizeData.js'
 
 describe('generateNpc', () => {
   it('should exist', () => {
