@@ -1,0 +1,45 @@
+version: ~> 1.0
+branches:
+  only:
+    - master
+    - prerelease
+# Caching of node_modules disabled, due to an increase in delayed breakages
+cache:
+  npm: false
+  yarn: false
+  directories: null
+dist: trusty
+language: node_js
+node_js:
+  - 14
+os: linux
+
+before_install:
+  # Create .netrc for access to install private repositories
+  # NOTE: Use > (overwrite), not >> (append), because Travis CI helpfully creates one for us.
+  # - 'echo -e "machine github.com\n  login $CI_USER_TOKEN" > ~/.netrc'
+  # Force https resolution of GitHub dependencies. See: https://github.com/npm/cli/issues/4896
+  - git config --global url."https://git@".insteadOf git://
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script:
+  # Run linting checks, suppressing warnings for cleanliness
+  - npm run lint:quiet
+  # Run tests
+  - npm run test:ci
+
+after_failure:
+  # Format coverage results to be where and how cc-test-reporter expects them
+  - ./cc-test-reporter format-coverage --output coverage/codeclimate.json -t lcov coverage/lcov.info
+  # Upload coverage to Code Climate
+  - ./cc-test-reporter upload-coverage -i coverage/codeclimate.json
+
+after_success:
+  # Format coverage results to be where and how cc-test-reporter expects them
+  - ./cc-test-reporter format-coverage --output coverage/codeclimate.json -t lcov coverage/lcov.info
+  # Upload coverage to Code Climate
+  - ./cc-test-reporter upload-coverage -i coverage/codeclimate.json
