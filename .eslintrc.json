@@ -11,6 +11,7 @@
   ],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
+    "allowImportExportEverywhere": true,
     "ecmaVersion": "latest",
     "requireConfigFile": false
   },
