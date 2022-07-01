@@ -9,8 +9,10 @@
     "airbnb-base",
     "plugin:jest/all"
   ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "requireConfigFile": false
   },
   "plugins": [
     "jest"
