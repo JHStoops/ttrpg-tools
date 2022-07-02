@@ -15,11 +15,13 @@
     "prestart": "npm run build",
     "start": "node --experimental-specifier-resolution=node test-code.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.18.0",
     "@babel/preset-env": "^7.18.2",
     "babel-loader": "^8.2.5",
@@ -28,6 +30,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.5.3",
+    "husky": "^8.0.0",
     "jest": "^28.1.1",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0"

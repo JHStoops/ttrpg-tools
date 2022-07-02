@@ -263,6 +263,8 @@ describe('customizeData', () => {
       descriptors: [ 'New' ],
       prefixes: [ 'York' ],
       suffixes: [ ' City' ],
+      postDescriptors: [ 'in the West' ],
+      premades: [ 'Old York City of the East' ],
     }
 
     beforeEach(() => {
@@ -287,6 +289,7 @@ describe('customizeData', () => {
       expect(customizedTownNames.descriptors).toEqual([ ...townNames.descriptors, ...customTownNames.descriptors ])
       expect(customizedTownNames.prefixes).toEqual([ ...townNames.prefixes, ...customTownNames.prefixes ])
       expect(customizedTownNames.suffixes).toEqual([ ...townNames.suffixes, ...customTownNames.suffixes ])
+      expect(customizedTownNames.postDescriptors).toEqual([ ...townNames.postDescriptors, ...customTownNames.postDescriptors ])
     })
 
     it('should reset townNames', () => {
@@ -305,7 +308,7 @@ describe('customizeData', () => {
     })
 
     it('should throw an error if lacking properties: descriptors, prefixes, and suffixes.', () => {
-      expect(() => data.townNames.customize({ friendInElven: 'Melon' })).toThrow(Error('customizeTownNameData(): newData must have at least one of these properties: descriptors, prefixes, suffixes.'))
+      expect(() => data.townNames.customize({ friendInElven: 'Melon' })).toThrow(Error('customizeTownNameData(): newData must have at least one of these properties: descriptors, prefixes, suffixes, postDescriptors.'))
     })
 
     it('should throw an error if descriptors is present but not an Array', () => {

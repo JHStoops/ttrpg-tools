@@ -30,6 +30,16 @@ describe('generateTownName', () => {
 
   it('should generate a Town name with a descriptor', () => {
     const townName = generateTownName(true)
-    expect(data.townNames.get().descriptors).toContain(townName.split(' ')[0])
+    expect(data.townNames.get().descriptors.some((descriptor) => townName.includes(descriptor))).toBe(true)
+  })
+
+  it('should generate a Town name with a postDescriptor', () => {
+    const townName = generateTownName(false, true)
+    expect(data.townNames.get().postDescriptors.some((postDescriptor) => townName.includes(postDescriptor))).toBe(true)
+  })
+
+  it('should generate a premade Town name', () => {
+    const townName = generateTownName(false, false, true)
+    expect(data.townNames.get().premades).toContain(townName)
   })
 })

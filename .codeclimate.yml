@@ -1,0 +1,111 @@
+version: "2"
+checks:
+  argument-count:
+    enabled: true
+    config:
+      threshold: 4
+  complex-logic:
+    enabled: true
+    config:
+      threshold: 4
+  file-lines:
+    enabled: true
+    config:
+      threshold: 750
+  method-complexity:
+    enabled: true
+    config:
+      threshold: 6
+  method-count:
+    enabled: true
+    config:
+      threshold: 20
+  method-lines:
+    enabled: true
+    config:
+      threshold: 50
+  nested-control-flow:
+    enabled: true
+    config:
+      threshold: 6
+  return-statements:
+    enabled: true
+    config:
+      threshold: 4
+  similar-code:
+    enabled: true
+    config:
+      threshold: 100
+  identical-code:
+    enabled: true
+    config:
+      threshold: 100
+plugins:
+  babel-eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  eslint:
+    enabled: true
+    channel: "eslint-7"
+    config:
+      config: .codeclimate.eslintrc.json
+      extensions:
+        - .js
+        - .json
+      ignore_warnings: true
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - FIXME
+      - TODO
+      - HACK
+  grep:
+    enabled: true
+    config:
+      patterns:
+        bad-merge:
+          pattern: <<<<<<<|=======|>>>>>>>
+          annotation: "Bad merge"
+          severity: critical
+          categories: ["Bug Risk", "Performance"]
+          content: >
+            Bad merge detected by one or more of the following strings of the form: "<<<<<<< Updated upstream", "=======", ">>>>>>> Stashed changes". In all likelihood, this will result in syntax errors when attempting to run your application.
+  markdownlint:
+    enabled: true
+    checks:
+      MD008:
+        enabled: false
+      MD013:
+        enabled: false
+      MD014:
+        enabled: false
+      MD015:
+        enabled: false
+      MD016:
+        enabled: false
+      MD017:
+        enabled: false
+      MD023:
+        enabled: false
+      MD024:
+        enabled: false
+      MD026:
+        enabled: false
+      MD029:
+        enabled: false
+      MD033:
+        enabled: false
+      MD034:
+        enabled: false
+      MD036:
+        enabled: false
+  shellcheck:
+    enabled: true
+exclude_patterns:
+  - ".*"
+  - coverage/
+  - dist/
+  - node_modules/
+  - "**/*test.js"

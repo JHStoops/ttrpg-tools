@@ -188,7 +188,9 @@ const flippedCoinsNumericResults = coin(3, true) // Replace "heads" and "tails" 
 | sex            | String  |         | (Required) The sex of the NPC: 'male' or 'female'. |
 |
 | *generateTownName*
-| withDescriptor | Boolean | false   | Whether to guarantee a descriptor name part. If false, there's only a 20% chance to add it. |
+| withDescriptor     | Boolean | false   | Whether to guarantee a descriptor name part. If false, there's only a 20% chance to add it. |
+| withPostDescriptor | Boolean | false   | Whether to guarantee a postDescriptor name part. If false, there's only a 20% chance to add it. |
+| usePremade         | Boolean | false   | Whether to use a premade town name instead of a generated name. |
 
 ```js
 import { generateNpcName, generateTownName } from 'ttrpg-tools'
@@ -476,6 +478,8 @@ Town Name Parts data is stored in this format:
   descriptors: ['Little', 'Higher', 'Grand']
   prefixes: ['Red', 'Asp']
   suffixes: ['woods', 'river', ' Town']
+  postDescriptors: ['in the East', 'City', 'Creek'],
+  premades: ['Rivendell', 'Hobbiton', 'Gondor']
 }
 ```
 
@@ -489,12 +493,12 @@ data.townNames.get()
 data.townNames.getOriginal()
 
 // Customize the available town name parts (Append to existing name parts)
-// Note: This example adds the descriptor and prefix name parts to the currently available town name parts data.
-data.townNames.customize({ descriptors: ['Lower'], prefixes: ['Green', 'Oak'] })
+// Note: This example adds the descriptor, prefix, and postDescriptor name parts to the currently available town name parts data.
+data.townNames.customize({ descriptors: ['Lower'], prefixes: ['Green', 'Oak'], postDescriptors: ['Landing'] })
 
 // Customize the available town name parts (Replace existing town name parts)
-// Note: This will replace suffix name parts data with the provided list of suffixes.
-data.townNames.customize({ suffixes: ['Owlbear', 'Mound'] }, true)
+// Note: This will replace suffix name parts and premades data with the provided lists of suffixes and premades.
+data.townNames.customize({ suffixes: ['Owlbear', 'Mound'], premades: ['Mordor']}, true)
 
 // Reset to factory settings
 data.townNames.reset()
