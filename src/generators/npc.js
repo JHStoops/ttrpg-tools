@@ -1,6 +1,15 @@
-import { getRandomElement } from '../lib/utils.js'
+import { getRandomElement, getRandomStandardDev } from '../lib/utils.js'
 import { data } from '../data/customizeData.js'
 import { generateNpcName, generateTownName } from './names.js'
+
+export function getRandomStat(isMainStat, isDumpStat) {
+  const MAX_STAT = 20
+  const mean = 0.55 + (isMainStat ? 0.15 : 0) - (isDumpStat ? 0.15 : 0) // increase or reduce bell curve mean if it's a main or dump stat
+  const stdev = 0.15 - ((isMainStat || isDumpStat) ? 0.1 : 0) // Reduce variance if it's a main or dump stat
+
+  // Transform to the desired mean and standard deviation:
+  return Math.round(getRandomStandardDev(mean, stdev) * MAX_STAT)
+}
 
 /**
  * @param {String} familyName - Specify the character's family name.
@@ -36,10 +45,30 @@ export function generateNpc({
     class: npcClassFinal,
     subclass: npmSubclassFinal,
     homeTown: homeTown ?? generateTownName(),
-    languages: languages ?? [ ...new Set([ 'Common', getRandomElement(data.languages.get()) ]) ], // Speak Common and up to one other language
+    languages: languages ?? [ ...new Set([ 'Common', getRandomElement(data.languages.get()), ...npcRace.languages ]) ], // Speak Common and up to one other language
     ...name,
     occupation: occupation ?? getRandomElement(data.occupations.get()),
-    race: npcRace,
+    // TODO: Remove `race` in next major version and rename `raceName` to be `race`
+    race,
+    raceName: npcRace.name,
     sex: npcSex,
+    age: Math.round(getRandomStandardDev(npcRace.avgAgeOfDeath / 2, 12)),
+    size: npcRace.size,
+    height: Number(getRandomStandardDev(npcRace.avgHeight, 0.25).toFixed(2)),
+    weight: Math.round(getRandomStandardDev(npcRace.avgWeight, 10)),
+    speeds: {
+      climb: npcRace.baseClimbSpeed,
+      flight: npcRace.baseFlightSpeed,
+      swim: npcRace.baseSwimSpeed,
+      walk: npcRace.baseWalkSpeed,
+    },
+    stats: {
+      strength: getRandomStat(),
+      dexterity: getRandomStat(),
+      constitution: getRandomStat(),
+      intelligence: getRandomStat(),
+      wisdom: getRandomStat(),
+      charisma: getRandomStat(),
+    },
   }
 }
