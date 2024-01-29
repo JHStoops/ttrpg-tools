@@ -6,6 +6,8 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jhstoops/ttrpg-tools/graphs/commit-activity)
 [![Maintainer](https://img.shields.io/badge/maintainer-JHStoops-blue)](https://GitHub.com/jhstoops)
 [![Twitter](https://badgen.net/badge/icon/twitter?icon=twitter&label)](https://twitter.com/jhstoops)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c2c180192985adf4db7c/maintainability)](https://codeclimate.com/github/JHStoops/ttrpg-tools/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c2c180192985adf4db7c/test_coverage)](https://codeclimate.com/github/JHStoops/ttrpg-tools/test_coverage)
 
 Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.
 
