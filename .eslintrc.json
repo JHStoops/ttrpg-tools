@@ -12,6 +12,11 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "allowImportExportEverywhere": true,
+    "babelOptions": {
+      "plugins": [
+        "@babel/plugin-syntax-import-assertions"
+      ]
+    },
     "ecmaVersion": "latest",
     "requireConfigFile": false,
     "sourceType": "module"
