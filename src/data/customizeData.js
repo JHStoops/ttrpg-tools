@@ -1,10 +1,10 @@
-import classes from './classes.json' assert { type: "json" }
-import dndLanguages from './languages.json' assert { type: "json" }
-import npcNames from './names.json' assert { type: "json" }
-import occupations from './occupations.json' assert { type: "json" }
-import races from './races.json' assert { type: "json" }
-import subclasses from './subclasses.json' assert { type: "json" }
-import townNames from './towns.json' assert { type: "json" }
+import classes from './classes.json'
+import dndLanguages from './languages.json'
+import npcNames from './names.json'
+import occupations from './occupations.json'
+import races from './races.json'
+import subclasses from './subclasses.json'
+import townNames from './towns.json'
 
 // Make classes, languages, occupations, and races customizable
 let availableClasses = [ ...classes ]
