@@ -54,6 +54,7 @@
       "always"
     ],
     "import/prefer-default-export": "off",
+    "jest/max-expects": "off",
     "jest/no-disabled-tests": "warn",
     "jest/no-hooks": "off",
     "jest/prefer-called-with": "off",
