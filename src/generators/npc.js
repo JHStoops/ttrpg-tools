@@ -49,7 +49,7 @@ export function generateNpc({
     ...name,
     occupation: occupation ?? getRandomElement(data.occupations.get()),
     // TODO: Remove `race` in next major version and rename `raceName` to be `race`
-    race,
+    race: npcRace,
     raceName: npcRace.name,
     sex: npcSex,
     age: Math.round(getRandomStandardDev(npcRace.avgAgeOfDeath / 2, 12)),

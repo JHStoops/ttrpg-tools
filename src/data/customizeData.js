@@ -1,10 +1,12 @@
-import classes from './classes.json'
-import dndLanguages from './languages.json'
-import npcNames from './names.json'
-import occupations from './occupations.json'
-import races from './races.json'
-import subclasses from './subclasses.json'
-import townNames from './towns.json'
+/* eslint-disable */
+import classes from './classes.json' assert { type: "json" }
+import dndLanguages from './languages.json' assert { type: "json" }
+import npcNames from './names.json' assert { type: "json" }
+import occupations from './occupations.json' assert { type: "json" }
+import races from './races.json' assert { type: "json" }
+import subclasses from './subclasses.json' assert { type: "json" }
+import townNames from './towns.json' assert { type: "json" }
+/* eslint-enable */
 
 // Make classes, languages, occupations, and races customizable
 let availableClasses = [ ...classes ]
@@ -258,7 +260,7 @@ export const data = {
      * @returns {Array} New list of available subclasses.
      */
     customize(npcClass, newsubclasses, replace) {
-      availableSubclasses = { ...availableSubclasses, [npcClass]: [ ...(replace ? newsubclasses : [ ...availableSubclasses, ...newsubclasses ]) ] }
+      availableSubclasses = { ...availableSubclasses, [npcClass]: [ ...(replace ? newsubclasses : [ ...availableSubclasses[npcClass], ...newsubclasses ]) ] }
       return availableSubclasses
     },
 
