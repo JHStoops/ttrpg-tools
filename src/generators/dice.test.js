@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { jest } from '@jest/globals'
 import * as dice from './dice.js'
 
 describe('dice', () => {
@@ -26,6 +28,35 @@ describe('dice', () => {
         const flipResults = dice.coin(i, true)
         expect(flipResults['0'] + flipResults['1']).toBe(i)
       }
+    })
+
+    it('should use highest coin toss with advantage', () => {
+      const maxSpy = jest.spyOn(Math, 'max')
+      const withAdvantage = true
+      const withDisadvantage = false
+      dice.coin(1, false, withAdvantage, withDisadvantage)
+
+      expect(maxSpy).toHaveBeenCalled()
+    })
+
+    it('should use lowest coin toss with disadvantage', () => {
+      const minSpy = jest.spyOn(Math, 'min')
+      const withAdvantage = false
+      const withDisadvantage = true
+      dice.coin(1, false, withAdvantage, withDisadvantage)
+
+      expect(minSpy).toHaveBeenCalled()
+    })
+
+    it('should use first coin toss with both advantage and disadvantage', () => {
+      const maxSpy = jest.spyOn(Math, 'max')
+      const minSpy = jest.spyOn(Math, 'min')
+      const withAdvantage = true
+      const withDisadvantage = true
+      dice.coin(1, false, withAdvantage, withDisadvantage)
+
+      expect(maxSpy).not.toHaveBeenCalled()
+      expect(minSpy).not.toHaveBeenCalled()
     })
 
     it('should throw error if coinFlips is not a Number', () => {
@@ -61,6 +92,43 @@ describe('dice', () => {
         })
       }
     })
+
+    it('should add modifier to rolls', () => {
+      expect(dice.diceRoll({ 1: 1 }, false, -5)).toEqual({ 1: -4 })
+      expect(dice.diceRoll({ 1: 1 }, false, 3)).toEqual({ 1: 4 })
+    })
+
+    it('should use highest roll with advantage', () => {
+      const maxSpy = jest.spyOn(Math, 'max')
+      const withAdvantage = true
+      const withDisadvantage = false
+      dice.diceRoll({ 20: 1 }, false, 0, withAdvantage, withDisadvantage)
+
+      expect(maxSpy).toHaveBeenCalled()
+    })
+
+    it('should use lowest roll with disadvantage', () => {
+      const minSpy = jest.spyOn(Math, 'min')
+      const withAdvantage = false
+      const withDisadvantage = true
+      dice.diceRoll({ 20: 1 }, false, 0, withAdvantage, withDisadvantage)
+
+      expect(minSpy).toHaveBeenCalled()
+    })
+
+    it('should use first roll with both advantage and disadvantage', () => {
+      const maxSpy = jest.spyOn(Math, 'max')
+      const minSpy = jest.spyOn(Math, 'min')
+      const withAdvantage = true
+      const withDisadvantage = true
+      dice.diceRoll({ 20: 1 }, false, 0, withAdvantage, withDisadvantage)
+
+      expect(maxSpy).not.toHaveBeenCalled()
+      expect(minSpy).not.toHaveBeenCalled()
+    })
+
+    it.todo('should roll with advantage')
+    it.todo('should roll with disadvantage')
 
     it('should throw error if dice is not an Object', () => {
       expect(() => dice.diceRoll(1)).toThrow(Error('diceRoll(): dice parameter must be an Object.'))

@@ -1,15 +1,17 @@
-import classes from './classes.json'
-import dndLanguages from './languages.json'
-import npcNames from './names.json'
-import occupations from './occupations.json'
-import races from './races.json'
-import townNames from './towns.json'
+import classes from './classes.json' with { type: 'json' }
+import dndLanguages from './languages.json' with { type: 'json' }
+import npcNames from './names.json' with { type: 'json' }
+import occupations from './occupations.json' with { type: 'json' }
+import races from './races.json' with { type: 'json' }
+import subclasses from './subclasses.json' with { type: 'json' }
+import townNames from './towns.json' with { type: 'json' }
 
 // Make classes, languages, occupations, and races customizable
 let availableClasses = [ ...classes ]
 let availableLanguages = [ ...dndLanguages ]
 let availableOccupations = [ ...occupations ]
 let availableRaces = { ...races }
+let availableSubclasses = JSON.parse(JSON.stringify(subclasses))
 
 // Make NPC name parts customizable
 const { givenNames, familyNames } = npcNames
@@ -233,6 +235,38 @@ export const data = {
      * @returns {undefined}
      */
     reset() { availableRaces = { ...races } },
+  },
+  subclasses: {
+    /**
+     * @description Gets available subclasses after customizations.
+     * @param {string} npcClass - Which class to get subclasses for.
+     * @returns {Array} List of available subclasses.
+     */
+    get(npcClass) { return availableSubclasses[npcClass] },
+
+    /**
+     * @description Gets the original subclasses provided by ttrpg-tools.
+     * @returns {Array} List of available subclasses. These are not necessarily the languages that are available.
+     */
+    getOriginal() { return subclasses },
+
+    /**
+     * @description Add new (or replace) subclasses with a custom list of subclasses.
+     * @param {string} npcClass - Which class to customize subclasses for.
+     * @param {Array} newsubclasses - An array of strings, custom subclasses to add.
+     * @param {Boolean} replace - Whether to replace the available subclasses with the newsubclasses.
+     * @returns {Array} New list of available subclasses.
+     */
+    customize(npcClass, newsubclasses, replace) {
+      availableSubclasses = { ...availableSubclasses, [npcClass]: [ ...(replace ? newsubclasses : [ ...availableSubclasses[npcClass], ...newsubclasses ]) ] }
+      return availableSubclasses
+    },
+
+    /**
+     * @description Reset customizations to original set of subclasses.
+     * @returns {undefined}
+     */
+    reset() { availableSubclasses = JSON.parse(JSON.stringify(subclasses)) },
   },
   townNames: {
     /**

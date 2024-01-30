@@ -6,6 +6,8 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/jhstoops/ttrpg-tools/graphs/commit-activity)
 [![Maintainer](https://img.shields.io/badge/maintainer-JHStoops-blue)](https://GitHub.com/jhstoops)
 [![Twitter](https://badgen.net/badge/icon/twitter?icon=twitter&label)](https://twitter.com/jhstoops)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c2c180192985adf4db7c/maintainability)](https://codeclimate.com/github/JHStoops/ttrpg-tools/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c2c180192985adf4db7c/test_coverage)](https://codeclimate.com/github/JHStoops/ttrpg-tools/test_coverage)
 
 Library for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.
 
@@ -53,10 +55,13 @@ import {
 
 ### Standard Dice
 
-| Parameter | Type    | Default | Description |
-| --------- | ----    | ------- | ----------- |
-| dieCount  | Number  | 1       | How many dice to roll. |
-| verbose   | Boolean | false   | Whether to return an object with individual roll results and total. |
+| Parameter          | Type    | Default | Description |
+| ---------          | ----    | ------- | ----------- |
+| dieCount           | Number  | 1       | How many dice to roll. |
+| verbose            | Boolean | false   | Whether to return an object with individual roll results and total. |
+| modifier            | Number  | 0       | Add modifier to roll. |
+| withAdvantage      | Boolean | false   | Whether to roll with advantage. |
+| withDisadvantage   | Boolean | false   | Whether to roll with disadvantage. |
 
 ```js
 import { d4, d6, d8, d10, d12, d20, d100 } from 'ttrpg-tools'
@@ -64,10 +69,10 @@ import { d4, d6, d8, d10, d12, d20, d100 } from 'ttrpg-tools'
 const d4Roll = d4() // Defaults to a single die
 const d6RollThreeDice = d6(3)
 const d8RollFiveDiceVerbose = d8(5, true)
-const d10Roll = d10()
-const d12Roll = d12()
-const d20Roll = d20()
-const d100Roll = d100()
+const d10RollWithModifier = d10(1, false, 2)
+const d12RollWithAdvantage = d12(1, false, 0, true)
+const d20RollWithDisadvantage = d20(1, false, 0, false, true)
+const d100RollWithClashingAdvantage = d100(1, false, 0, true, true) // First roll is used
 ```
 
 ```js
@@ -101,10 +106,13 @@ const d100Roll = d100()
 
 ### Custom Dice
 
-| Parameter | Type    | Default | Description |
-| --------  | ----    | ------- | ----------- |
-| dice      | Object  |         | (Required) How many coins to flip. |
-| asNumeric | Boolean | false   | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
+| Parameter          | Type    | Default | Description |
+| --------           | ----    | ------- | ----------- |
+| dice               | Object  |         | (Required) How many coins to flip. |
+| asNumeric          | Boolean | false   | Whether to return an object with 1 and 0 instead of "heads" and "tails", respectively. |
+| modifier            | Number  | 0       | Add modifier to roll. |
+| withAdvantage      | Boolean | false   | Whether to roll with advantage. |
+| withDisadvantage   | Boolean | false   | Whether to roll with disadvantage. |
 
 ```js
 import { diceRoll } from 'ttrpg-tools'
@@ -154,10 +162,13 @@ const rollManyDieTypes = diceroll({
 
 ### Coin Flips
 
-| Parameter | Type    | Default | Description |
-| --------  | ----    | ------- | ----------- |
-| coinFlips | Number  | 1       | Specify which die types and their counts to be rolled. |
-| verbose   | Boolean | false   | Whether to return an object with individual roll results and total. |
+| Parameter          | Type    | Default | Description |
+| --------           | ----    | ------- | ----------- |
+| coinFlips          | Number  | 1       | Specify which die types and their counts to be rolled. |
+| verbose            | Boolean | false   | Whether to return an object with individual roll results and total. |
+| modifier            | Number  | 0       | Add modifier to coin toss. |
+| withAdvantage      | Boolean | false   | Whether to toss coin with advantage. |
+| withDisadvantage   | Boolean | false   | Whether to toss coin with disadvantage. |
 
 ```js
 import { coin } from 'ttrpg-tools'

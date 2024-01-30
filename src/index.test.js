@@ -1,6 +1,6 @@
 import ttrpgTools, {
-  data,
   coin,
+  data,
   d4,
   d6,
   d8,

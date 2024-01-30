@@ -21,7 +21,7 @@ export default {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    '**/*.js',
+    'src/**/*.js',
   ],
 
   // The directory where Jest should output its coverage files
@@ -148,7 +148,9 @@ export default {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  // setupFiles: [],
+  // setupFiles: [
+  //   '<rootDir>/test-setup.js',
+  // ],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],
@@ -180,7 +182,7 @@ export default {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  // testRegex: [],
+  // testRegex: [ '/src/*' ],
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
