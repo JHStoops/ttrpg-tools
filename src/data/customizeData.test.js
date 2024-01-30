@@ -3,6 +3,7 @@ import languages from './languages.json'
 import npcNames from './names.json'
 import occupations from './occupations.json'
 import races from './races.json'
+import subclasses from './subclasses.json'
 import townNames from './towns.json'
 import { customizeArrayData, data } from './customizeData.js'
 
@@ -255,6 +256,51 @@ describe('customizeData', () => {
 
     it('should throw an error if elements in newRaces do not have the name property', () => {
       expect(() => data.races.customize({ Orcs: { size: 'medium' } })).toThrow(Error('customizeRacesData(): newRaces must be Object and have a `name` string property.'))
+    })
+  })
+
+  describe('subclasses', () => {
+    const customSubclasses = [ 'customizing', 'classes', 'is', 'fun!' ]
+
+    beforeEach(() => {
+      data.subclasses.reset()
+    })
+
+    it('should get available subclasses', () => {
+      Object.keys(subclasses).forEach((className) => {
+        expect(data.subclasses.get(className)).toEqual(subclasses[className])
+      })
+    })
+
+    it('should get original subclasses', () => {
+      expect(data.subclasses.getOriginal()).toEqual(subclasses)
+    })
+
+    it('should customize subclasses (replace)', () => {
+      Object.keys(subclasses).forEach((className) => {
+        const customizedSubclasses = data.subclasses.customize(className, customSubclasses, true)
+        expect(customizedSubclasses[className]).toEqual(customSubclasses)
+      })
+    })
+
+    it('should customize subclasses (append)', () => {
+      Object.keys(subclasses).forEach((className) => {
+        const customizedSubclasses = data.subclasses.customize(className, customSubclasses)
+        expect(customizedSubclasses[className]).toEqual([ ...subclasses[className], ...customSubclasses ])
+      })
+    })
+
+    it('should reset subclasses', () => {
+      const customizedSubclasses = data.subclasses.customize('Barbarian', customSubclasses, true)
+
+      // First make sure customization took place
+      expect(customizedSubclasses.Barbarian).toEqual(customSubclasses)
+
+      // Then test that reset takes place
+      data.subclasses.reset()
+      Object.keys(subclasses).forEach((className) => {
+        expect(data.subclasses.get(className)).toEqual(subclasses[className])
+      })
     })
   })
 

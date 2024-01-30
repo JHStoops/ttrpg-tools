@@ -13,3 +13,5 @@ export * from './generators/dice.js'
 export * from './generators/names.js'
 export * from './generators/npc.js'
 export * from './generators/towns.js'
+
+export * as random from './lib/utils.js'
