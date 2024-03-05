@@ -1,6 +1,6 @@
 {
   "name": "ttrpg-tools",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "API for generating random dice rolls, NPCs, towns, names, etc. for TTRPG campaigns.",
   "author": "Joseph H. Stoops",
   "main": "src/index.js",
